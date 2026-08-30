@@ -12,12 +12,14 @@ export class TransactionService {
     this.#transactionRepository = transactionRepository;
   };
 
-  async createTransaction( { amount, medicationId, fromDepartmentId, toDepartmentId, toPatientId, createdBy } ) {
+  async createTransaction( body ) {
     return await this.#prisma.$transaction( async tx => {
-      const toFuckId = toDepartmentId ? { toDepartmentId } : { toPatientId };
       const operationId = crypto.randomUUID( { version: 7 } );
-      const credit = await this.#transactionRepository.create( { operationId, amount: amount / -1, medicationId, departmentId: fromDepartmentId, type: 'CREDIT', createdBy }, tx );
-      const debit = await this.#transactionRepository.create( { operationId, amount, medicationId, type: 'DEBIT', createdBy, ...toFuckId }, tx );
+      const createdAt = new Date();
+      const credits = body.map( ( { createdBy, amount, medicationId, fromDepartmentId } ) => ( { operationId, createdAt, createdBy, amount, medicationId, type: 'DEBIT', departmentId: fromDepartmentId } ) );
+      const debits = body.map( ( { createdBy, amount, medicationId, toDepartmentId, toPatientId } ) => ( { operationId, createdAt, createdBy, amount, medicationId, type: 'CREDIT', departmentId: toDepartmentId, patientId: toPatientId } ) );
+      const credit = await this.#transactionRepository.create( credits, tx );
+      const debit = await this.#transactionRepository.create( debits, tx );
       return { credit, debit };
     } );
   };

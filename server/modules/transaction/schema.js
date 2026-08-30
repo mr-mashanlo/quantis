@@ -6,7 +6,7 @@ const BaseTransaction = z.object( {
   fromDepartmentId: z.string()
 } );
 
-export const TransactionSchema = z.union( [
+export const TransactionSchema = z.array( z.union( [
   BaseTransaction.extend( {
     toDepartmentId: z.string(),
     toPatientId: z.undefined().optional()
@@ -15,7 +15,7 @@ export const TransactionSchema = z.union( [
     toPatientId: z.string(),
     toDepartmentId: z.undefined().optional()
   } )
-] );
+] ) );
 
 export const FilteringSchema = BaseTransaction.partial().extend( {
   operationId: z.string().optional()
