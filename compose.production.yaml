@@ -1,0 +1,51 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: postgres_production
+    networks:
+      - prisma-network
+    volumes:
+      - postgres:/var/lib/postgresql
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile.production
+    container_name: node_production
+    networks:
+      - prisma-network
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile.production
+    container_name: astro_production
+    networks:
+      - mern-network
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    restart: always
+
+networks:
+  prisma-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

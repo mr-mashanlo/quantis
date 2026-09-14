@@ -2,7 +2,6 @@ services:
 
   db:
     image: postgres:15
-    hostname: postgres
     container_name: postgres
     ports:
       - "5432:5432"
@@ -15,7 +14,7 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -42,9 +41,9 @@ services:
     image: node:26-alpine
     container_name: studio
     working_dir: /usr/src/app
+    command: npx prisma studio --port 5555 --browser none
     volumes:
       - ./server:/usr/src/app
-    command: npx prisma studio --port 5555 --browser none
     ports:
       - "5555:5555"
     networks:
@@ -54,17 +53,6 @@ services:
         condition: service_healthy
       server:
         condition: service_started
-
-  # client:
-  #   build:
-  #     context: ./client
-  #     dockerfile: dockerfile
-  #   container_name: astro
-  #   ports:
-  #     - "4321:4321"
-  #   volumes:
-  #     - ./client:/usr/src/app
-  #     - /usr/src/app/node_modules
 
 networks:
   prisma-network:
