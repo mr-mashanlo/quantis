@@ -8,7 +8,7 @@ export class DepartmentController {
 
   async createDepartment( req, res, next ) {
     try {
-      const document = await this.#departmentService.createDepartment( { ...req.body, createdBy: req.user.employeeId } );
+      const document = await this.#departmentService.createDepartment( { ...req.body, createdById: req.user.employeeId } );
       res.json( document );
     } catch ( error ) {
       next( error );

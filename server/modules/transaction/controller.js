@@ -8,7 +8,7 @@ export class TransactionController {
 
   async createTransaction( req, res, next ) {
     try {
-      const document = await this.#transactionService.createTransaction( req.body.map( body => ( { ...body, createdBy: req.user.employeeId } ) ) );
+      const document = await this.#transactionService.createTransaction( { ...req.body, operationId: req.params.id, createdById: req.user.employeeId } );
       res.json( document );
     } catch ( error ) {
       next( error );

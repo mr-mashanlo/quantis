@@ -1,5 +1,3 @@
-import crypto from 'node:crypto';
-
 import { FilteringSchema, PaginationSchema, SortingSchema } from './schema.js';
 
 export class TransactionService {
@@ -14,12 +12,8 @@ export class TransactionService {
 
   async createTransaction( body ) {
     return await this.#prisma.$transaction( async tx => {
-      const operationId = crypto.randomUUID( { version: 7 } );
-      const createdAt = new Date();
-      const credits = body.map( ( { createdBy, amount, medicationId, fromDepartmentId } ) => ( { operationId, createdAt, createdBy, amount, medicationId, type: 'DEBIT', departmentId: fromDepartmentId } ) );
-      const debits = body.map( ( { createdBy, amount, medicationId, toDepartmentId, toPatientId } ) => ( { operationId, createdAt, createdBy, amount, medicationId, type: 'CREDIT', departmentId: toDepartmentId, patientId: toPatientId } ) );
-      const credit = await this.#transactionRepository.create( credits, tx );
-      const debit = await this.#transactionRepository.create( debits, tx );
+      const credit = await this.#transactionRepository.create( { ...body, type: 'CREDIT' }, tx ); // FROM
+      const debit = await this.#transactionRepository.create( { ...body, type: 'DEBIT' }, tx ); // TO
       return { credit, debit };
     } );
   };

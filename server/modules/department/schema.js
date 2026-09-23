@@ -1,10 +1,14 @@
 import { z } from 'zod';
 
-export const DepartmentSchema = z.object( {
-  name: z.string().min( 3, 'Code must be ≥ 3 characters' )
+export const CreateDepartmentSchema = z.object( {
+  name: z.string().min( 3, 'Name must be ≥ 3 characters' )
 } );
 
-export const FilteringSchema = DepartmentSchema.partial().extend( {
+export const UpdateDepartmentSchema = CreateDepartmentSchema.extend( {
+  archived: z.boolean()
+} );
+
+export const FilteringSchema = CreateDepartmentSchema.partial().extend( {
   search: z.preprocess(
     v => v ? v : undefined,
     z.string().optional()
@@ -13,7 +17,7 @@ export const FilteringSchema = DepartmentSchema.partial().extend( {
 
 export const SortingSchema = z.object( {
   order: z.enum( [ 'asc', 'desc' ] ).default( 'desc' ),
-  sort: z.enum( [ 'id', 'name' ] ).default( 'id' )
+  sort: z.enum( [ 'id', 'name', 'archived' ] ).default( 'id' )
 } );
 
 export const PaginationSchema = z.object( {

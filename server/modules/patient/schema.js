@@ -1,10 +1,14 @@
 import { z } from 'zod';
 
-export const PatientSchema = z.object( {
+export const CreatePatientSchema = z.object( {
   name: z.string().min( 3, 'Name must be ≥ 3 characters' )
 } );
 
-export const FilteringSchema = PatientSchema.partial().extend( {
+export const UpdatePatientSchema = CreatePatientSchema.extend( {
+  archived: z.boolean()
+} );
+
+export const FilteringSchema = CreatePatientSchema.partial().extend( {
   search: z.preprocess(
     v => v ? v : undefined,
     z.string().optional()
@@ -13,7 +17,7 @@ export const FilteringSchema = PatientSchema.partial().extend( {
 
 export const SortingSchema = z.object( {
   order: z.enum( [ 'asc', 'desc' ] ).default( 'desc' ),
-  sort: z.enum( [ 'id', 'name', 'role' ] ).default( 'id' )
+  sort: z.enum( [ 'id', 'name', 'role', 'archived' ] ).default( 'id' )
 } );
 
 export const PaginationSchema = z.object( {

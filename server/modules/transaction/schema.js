@@ -1,29 +1,19 @@
 import { z } from 'zod';
 
-const BaseTransaction = z.object( {
+export const TransactionSchema = z.object( {
   amount: z.number().positive(),
-  medicationId: z.string(),
-  fromDepartmentId: z.string()
+  medicationId: z.string()
 } );
 
-export const TransactionSchema = z.array( z.union( [
-  BaseTransaction.extend( {
-    toDepartmentId: z.string(),
-    toPatientId: z.undefined().optional()
-  } ),
-  BaseTransaction.extend( {
-    toPatientId: z.string(),
-    toDepartmentId: z.undefined().optional()
-  } )
-] ) );
-
-export const FilteringSchema = BaseTransaction.partial().extend( {
-  operationId: z.string().optional()
-} );
+export const FilteringSchema = TransactionSchema.extend( {
+  operationId: z.string(),
+  toDepartmentId: z.string(),
+  toPatientId: z.string()
+} ).partial();
 
 export const SortingSchema = z.object( {
   order: z.enum( [ 'asc', 'desc' ] ).default( 'desc' ),
-  sort: z.enum( [ 'id', 'amount', 'medicationId', 'fromDepartmentId', 'toDepartmentId', 'toPatientId' ] ).default( 'id' )
+  sort: z.enum( [ 'id', 'type', 'amount', 'medicationId', 'createdAt' ] ).default( 'id' )
 } );
 
 export const PaginationSchema = z.object( {

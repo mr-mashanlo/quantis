@@ -11,11 +11,11 @@ export class TransactionRepository {
   };
 
   async create( data, tx = this.#prisma ) {
-    return await tx.transaction.createMany( { data } );
+    return await tx.transaction.create( { data } );
   };
 
   async delete( where, tx = this.#prisma ) {
-    return await tx.transaction.deleteMany( { where } );
+    return await tx.transaction.delete( { where } );
   };
 
   async find( { filters = {}, sort = { 'id': 'desc' }, pagination = { skip: 0, limit: 10 } }, tx = this.#prisma ) {
@@ -23,7 +23,10 @@ export class TransactionRepository {
       where: filters,
       orderBy: sort,
       take: pagination.limit,
-      skip: pagination.skip
+      skip: pagination.skip,
+      include: {
+        medication: true
+      }
     } );
   };
 

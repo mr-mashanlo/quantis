@@ -8,7 +8,7 @@ export class MedicationController {
 
   async createMedication( req, res, next ) {
     try {
-      const document = await this.#medicationService.createMedication( { ...req.body, createdBy: req.user.employeeId } );
+      const document = await this.#medicationService.createMedication( { ...req.body, createdById: req.user.employeeId } );
       res.json( document );
     } catch ( error ) {
       next( error );
