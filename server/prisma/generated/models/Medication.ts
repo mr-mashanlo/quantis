@@ -29,7 +29,7 @@ export type MedicationMinAggregateOutputType = {
   name: string | null
   unit: string | null
   createdAt: Date | null
-  createdBy: string | null
+  createdById: string | null
   archived: boolean | null
 }
 
@@ -38,7 +38,7 @@ export type MedicationMaxAggregateOutputType = {
   name: string | null
   unit: string | null
   createdAt: Date | null
-  createdBy: string | null
+  createdById: string | null
   archived: boolean | null
 }
 
@@ -47,7 +47,7 @@ export type MedicationCountAggregateOutputType = {
   name: number
   unit: number
   createdAt: number
-  createdBy: number
+  createdById: number
   archived: number
   _all: number
 }
@@ -58,7 +58,7 @@ export type MedicationMinAggregateInputType = {
   name?: true
   unit?: true
   createdAt?: true
-  createdBy?: true
+  createdById?: true
   archived?: true
 }
 
@@ -67,7 +67,7 @@ export type MedicationMaxAggregateInputType = {
   name?: true
   unit?: true
   createdAt?: true
-  createdBy?: true
+  createdById?: true
   archived?: true
 }
 
@@ -76,7 +76,7 @@ export type MedicationCountAggregateInputType = {
   name?: true
   unit?: true
   createdAt?: true
-  createdBy?: true
+  createdById?: true
   archived?: true
   _all?: true
 }
@@ -158,7 +158,7 @@ export type MedicationGroupByOutputType = {
   name: string
   unit: string
   createdAt: Date
-  createdBy: string
+  createdById: string
   archived: boolean
   _count: MedicationCountAggregateOutputType | null
   _min: MedicationMinAggregateOutputType | null
@@ -188,9 +188,9 @@ export type MedicationWhereInput = {
   name?: Prisma.StringFilter<"Medication"> | string
   unit?: Prisma.StringFilter<"Medication"> | string
   createdAt?: Prisma.DateTimeFilter<"Medication"> | Date | string
-  createdBy?: Prisma.StringFilter<"Medication"> | string
+  createdById?: Prisma.StringFilter<"Medication"> | string
   archived?: Prisma.BoolFilter<"Medication"> | boolean
-  employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  createdBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   transactions?: Prisma.TransactionListRelationFilter
 }
 
@@ -199,9 +199,9 @@ export type MedicationOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
   archived?: Prisma.SortOrder
-  employee?: Prisma.EmployeeOrderByWithRelationInput
+  createdBy?: Prisma.EmployeeOrderByWithRelationInput
   transactions?: Prisma.TransactionOrderByRelationAggregateInput
 }
 
@@ -213,9 +213,9 @@ export type MedicationWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Medication"> | string
   unit?: Prisma.StringFilter<"Medication"> | string
   createdAt?: Prisma.DateTimeFilter<"Medication"> | Date | string
-  createdBy?: Prisma.StringFilter<"Medication"> | string
+  createdById?: Prisma.StringFilter<"Medication"> | string
   archived?: Prisma.BoolFilter<"Medication"> | boolean
-  employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  createdBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   transactions?: Prisma.TransactionListRelationFilter
 }, "id">
 
@@ -224,7 +224,7 @@ export type MedicationOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
   archived?: Prisma.SortOrder
   _count?: Prisma.MedicationCountOrderByAggregateInput
   _max?: Prisma.MedicationMaxOrderByAggregateInput
@@ -239,7 +239,7 @@ export type MedicationScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Medication"> | string
   unit?: Prisma.StringWithAggregatesFilter<"Medication"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Medication"> | Date | string
-  createdBy?: Prisma.StringWithAggregatesFilter<"Medication"> | string
+  createdById?: Prisma.StringWithAggregatesFilter<"Medication"> | string
   archived?: Prisma.BoolWithAggregatesFilter<"Medication"> | boolean
 }
 
@@ -249,7 +249,7 @@ export type MedicationCreateInput = {
   unit: string
   createdAt?: Date | string
   archived?: boolean
-  employee: Prisma.EmployeeCreateNestedOneWithoutMediacationsInput
+  createdBy: Prisma.EmployeeCreateNestedOneWithoutMediacationsInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutMedicationInput
 }
 
@@ -258,7 +258,7 @@ export type MedicationUncheckedCreateInput = {
   name: string
   unit: string
   createdAt?: Date | string
-  createdBy: string
+  createdById: string
   archived?: boolean
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutMedicationInput
 }
@@ -269,7 +269,7 @@ export type MedicationUpdateInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archived?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  employee?: Prisma.EmployeeUpdateOneRequiredWithoutMediacationsNestedInput
+  createdBy?: Prisma.EmployeeUpdateOneRequiredWithoutMediacationsNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutMedicationNestedInput
 }
 
@@ -278,7 +278,7 @@ export type MedicationUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
   archived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutMedicationNestedInput
 }
@@ -288,7 +288,7 @@ export type MedicationCreateManyInput = {
   name: string
   unit: string
   createdAt?: Date | string
-  createdBy: string
+  createdById: string
   archived?: boolean
 }
 
@@ -305,7 +305,7 @@ export type MedicationUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
   archived?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -324,7 +324,7 @@ export type MedicationCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
   archived?: Prisma.SortOrder
 }
 
@@ -333,7 +333,7 @@ export type MedicationMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
   archived?: Prisma.SortOrder
 }
 
@@ -342,7 +342,7 @@ export type MedicationMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
   archived?: Prisma.SortOrder
 }
 
@@ -351,45 +351,45 @@ export type MedicationScalarRelationFilter = {
   isNot?: Prisma.MedicationWhereInput
 }
 
-export type MedicationCreateNestedManyWithoutEmployeeInput = {
-  create?: Prisma.XOR<Prisma.MedicationCreateWithoutEmployeeInput, Prisma.MedicationUncheckedCreateWithoutEmployeeInput> | Prisma.MedicationCreateWithoutEmployeeInput[] | Prisma.MedicationUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutEmployeeInput | Prisma.MedicationCreateOrConnectWithoutEmployeeInput[]
-  createMany?: Prisma.MedicationCreateManyEmployeeInputEnvelope
+export type MedicationCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.MedicationCreateWithoutCreatedByInput, Prisma.MedicationUncheckedCreateWithoutCreatedByInput> | Prisma.MedicationCreateWithoutCreatedByInput[] | Prisma.MedicationUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutCreatedByInput | Prisma.MedicationCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.MedicationCreateManyCreatedByInputEnvelope
   connect?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
 }
 
-export type MedicationUncheckedCreateNestedManyWithoutEmployeeInput = {
-  create?: Prisma.XOR<Prisma.MedicationCreateWithoutEmployeeInput, Prisma.MedicationUncheckedCreateWithoutEmployeeInput> | Prisma.MedicationCreateWithoutEmployeeInput[] | Prisma.MedicationUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutEmployeeInput | Prisma.MedicationCreateOrConnectWithoutEmployeeInput[]
-  createMany?: Prisma.MedicationCreateManyEmployeeInputEnvelope
+export type MedicationUncheckedCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.MedicationCreateWithoutCreatedByInput, Prisma.MedicationUncheckedCreateWithoutCreatedByInput> | Prisma.MedicationCreateWithoutCreatedByInput[] | Prisma.MedicationUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutCreatedByInput | Prisma.MedicationCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.MedicationCreateManyCreatedByInputEnvelope
   connect?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
 }
 
-export type MedicationUpdateManyWithoutEmployeeNestedInput = {
-  create?: Prisma.XOR<Prisma.MedicationCreateWithoutEmployeeInput, Prisma.MedicationUncheckedCreateWithoutEmployeeInput> | Prisma.MedicationCreateWithoutEmployeeInput[] | Prisma.MedicationUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutEmployeeInput | Prisma.MedicationCreateOrConnectWithoutEmployeeInput[]
-  upsert?: Prisma.MedicationUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.MedicationUpsertWithWhereUniqueWithoutEmployeeInput[]
-  createMany?: Prisma.MedicationCreateManyEmployeeInputEnvelope
+export type MedicationUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.MedicationCreateWithoutCreatedByInput, Prisma.MedicationUncheckedCreateWithoutCreatedByInput> | Prisma.MedicationCreateWithoutCreatedByInput[] | Prisma.MedicationUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutCreatedByInput | Prisma.MedicationCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.MedicationUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.MedicationUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.MedicationCreateManyCreatedByInputEnvelope
   set?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
   disconnect?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
   delete?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
   connect?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
-  update?: Prisma.MedicationUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.MedicationUpdateWithWhereUniqueWithoutEmployeeInput[]
-  updateMany?: Prisma.MedicationUpdateManyWithWhereWithoutEmployeeInput | Prisma.MedicationUpdateManyWithWhereWithoutEmployeeInput[]
+  update?: Prisma.MedicationUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.MedicationUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.MedicationUpdateManyWithWhereWithoutCreatedByInput | Prisma.MedicationUpdateManyWithWhereWithoutCreatedByInput[]
   deleteMany?: Prisma.MedicationScalarWhereInput | Prisma.MedicationScalarWhereInput[]
 }
 
-export type MedicationUncheckedUpdateManyWithoutEmployeeNestedInput = {
-  create?: Prisma.XOR<Prisma.MedicationCreateWithoutEmployeeInput, Prisma.MedicationUncheckedCreateWithoutEmployeeInput> | Prisma.MedicationCreateWithoutEmployeeInput[] | Prisma.MedicationUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutEmployeeInput | Prisma.MedicationCreateOrConnectWithoutEmployeeInput[]
-  upsert?: Prisma.MedicationUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.MedicationUpsertWithWhereUniqueWithoutEmployeeInput[]
-  createMany?: Prisma.MedicationCreateManyEmployeeInputEnvelope
+export type MedicationUncheckedUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.MedicationCreateWithoutCreatedByInput, Prisma.MedicationUncheckedCreateWithoutCreatedByInput> | Prisma.MedicationCreateWithoutCreatedByInput[] | Prisma.MedicationUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.MedicationCreateOrConnectWithoutCreatedByInput | Prisma.MedicationCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.MedicationUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.MedicationUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.MedicationCreateManyCreatedByInputEnvelope
   set?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
   disconnect?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
   delete?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
   connect?: Prisma.MedicationWhereUniqueInput | Prisma.MedicationWhereUniqueInput[]
-  update?: Prisma.MedicationUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.MedicationUpdateWithWhereUniqueWithoutEmployeeInput[]
-  updateMany?: Prisma.MedicationUpdateManyWithWhereWithoutEmployeeInput | Prisma.MedicationUpdateManyWithWhereWithoutEmployeeInput[]
+  update?: Prisma.MedicationUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.MedicationUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.MedicationUpdateManyWithWhereWithoutCreatedByInput | Prisma.MedicationUpdateManyWithWhereWithoutCreatedByInput[]
   deleteMany?: Prisma.MedicationScalarWhereInput | Prisma.MedicationScalarWhereInput[]
 }
 
@@ -407,7 +407,7 @@ export type MedicationUpdateOneRequiredWithoutTransactionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MedicationUpdateToOneWithWhereWithoutTransactionsInput, Prisma.MedicationUpdateWithoutTransactionsInput>, Prisma.MedicationUncheckedUpdateWithoutTransactionsInput>
 }
 
-export type MedicationCreateWithoutEmployeeInput = {
+export type MedicationCreateWithoutCreatedByInput = {
   id?: string
   name: string
   unit: string
@@ -416,7 +416,7 @@ export type MedicationCreateWithoutEmployeeInput = {
   transactions?: Prisma.TransactionCreateNestedManyWithoutMedicationInput
 }
 
-export type MedicationUncheckedCreateWithoutEmployeeInput = {
+export type MedicationUncheckedCreateWithoutCreatedByInput = {
   id?: string
   name: string
   unit: string
@@ -425,30 +425,30 @@ export type MedicationUncheckedCreateWithoutEmployeeInput = {
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutMedicationInput
 }
 
-export type MedicationCreateOrConnectWithoutEmployeeInput = {
+export type MedicationCreateOrConnectWithoutCreatedByInput = {
   where: Prisma.MedicationWhereUniqueInput
-  create: Prisma.XOR<Prisma.MedicationCreateWithoutEmployeeInput, Prisma.MedicationUncheckedCreateWithoutEmployeeInput>
+  create: Prisma.XOR<Prisma.MedicationCreateWithoutCreatedByInput, Prisma.MedicationUncheckedCreateWithoutCreatedByInput>
 }
 
-export type MedicationCreateManyEmployeeInputEnvelope = {
-  data: Prisma.MedicationCreateManyEmployeeInput | Prisma.MedicationCreateManyEmployeeInput[]
+export type MedicationCreateManyCreatedByInputEnvelope = {
+  data: Prisma.MedicationCreateManyCreatedByInput | Prisma.MedicationCreateManyCreatedByInput[]
   skipDuplicates?: boolean
 }
 
-export type MedicationUpsertWithWhereUniqueWithoutEmployeeInput = {
+export type MedicationUpsertWithWhereUniqueWithoutCreatedByInput = {
   where: Prisma.MedicationWhereUniqueInput
-  update: Prisma.XOR<Prisma.MedicationUpdateWithoutEmployeeInput, Prisma.MedicationUncheckedUpdateWithoutEmployeeInput>
-  create: Prisma.XOR<Prisma.MedicationCreateWithoutEmployeeInput, Prisma.MedicationUncheckedCreateWithoutEmployeeInput>
+  update: Prisma.XOR<Prisma.MedicationUpdateWithoutCreatedByInput, Prisma.MedicationUncheckedUpdateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.MedicationCreateWithoutCreatedByInput, Prisma.MedicationUncheckedCreateWithoutCreatedByInput>
 }
 
-export type MedicationUpdateWithWhereUniqueWithoutEmployeeInput = {
+export type MedicationUpdateWithWhereUniqueWithoutCreatedByInput = {
   where: Prisma.MedicationWhereUniqueInput
-  data: Prisma.XOR<Prisma.MedicationUpdateWithoutEmployeeInput, Prisma.MedicationUncheckedUpdateWithoutEmployeeInput>
+  data: Prisma.XOR<Prisma.MedicationUpdateWithoutCreatedByInput, Prisma.MedicationUncheckedUpdateWithoutCreatedByInput>
 }
 
-export type MedicationUpdateManyWithWhereWithoutEmployeeInput = {
+export type MedicationUpdateManyWithWhereWithoutCreatedByInput = {
   where: Prisma.MedicationScalarWhereInput
-  data: Prisma.XOR<Prisma.MedicationUpdateManyMutationInput, Prisma.MedicationUncheckedUpdateManyWithoutEmployeeInput>
+  data: Prisma.XOR<Prisma.MedicationUpdateManyMutationInput, Prisma.MedicationUncheckedUpdateManyWithoutCreatedByInput>
 }
 
 export type MedicationScalarWhereInput = {
@@ -459,7 +459,7 @@ export type MedicationScalarWhereInput = {
   name?: Prisma.StringFilter<"Medication"> | string
   unit?: Prisma.StringFilter<"Medication"> | string
   createdAt?: Prisma.DateTimeFilter<"Medication"> | Date | string
-  createdBy?: Prisma.StringFilter<"Medication"> | string
+  createdById?: Prisma.StringFilter<"Medication"> | string
   archived?: Prisma.BoolFilter<"Medication"> | boolean
 }
 
@@ -469,7 +469,7 @@ export type MedicationCreateWithoutTransactionsInput = {
   unit: string
   createdAt?: Date | string
   archived?: boolean
-  employee: Prisma.EmployeeCreateNestedOneWithoutMediacationsInput
+  createdBy: Prisma.EmployeeCreateNestedOneWithoutMediacationsInput
 }
 
 export type MedicationUncheckedCreateWithoutTransactionsInput = {
@@ -477,7 +477,7 @@ export type MedicationUncheckedCreateWithoutTransactionsInput = {
   name: string
   unit: string
   createdAt?: Date | string
-  createdBy: string
+  createdById: string
   archived?: boolean
 }
 
@@ -503,7 +503,7 @@ export type MedicationUpdateWithoutTransactionsInput = {
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archived?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  employee?: Prisma.EmployeeUpdateOneRequiredWithoutMediacationsNestedInput
+  createdBy?: Prisma.EmployeeUpdateOneRequiredWithoutMediacationsNestedInput
 }
 
 export type MedicationUncheckedUpdateWithoutTransactionsInput = {
@@ -511,11 +511,11 @@ export type MedicationUncheckedUpdateWithoutTransactionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
   archived?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
-export type MedicationCreateManyEmployeeInput = {
+export type MedicationCreateManyCreatedByInput = {
   id?: string
   name: string
   unit: string
@@ -523,7 +523,7 @@ export type MedicationCreateManyEmployeeInput = {
   archived?: boolean
 }
 
-export type MedicationUpdateWithoutEmployeeInput = {
+export type MedicationUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
@@ -532,7 +532,7 @@ export type MedicationUpdateWithoutEmployeeInput = {
   transactions?: Prisma.TransactionUpdateManyWithoutMedicationNestedInput
 }
 
-export type MedicationUncheckedUpdateWithoutEmployeeInput = {
+export type MedicationUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
@@ -541,7 +541,7 @@ export type MedicationUncheckedUpdateWithoutEmployeeInput = {
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutMedicationNestedInput
 }
 
-export type MedicationUncheckedUpdateManyWithoutEmployeeInput = {
+export type MedicationUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   unit?: Prisma.StringFieldUpdateOperationsInput | string
@@ -585,9 +585,9 @@ export type MedicationSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   name?: boolean
   unit?: boolean
   createdAt?: boolean
-  createdBy?: boolean
+  createdById?: boolean
   archived?: boolean
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   transactions?: boolean | Prisma.Medication$transactionsArgs<ExtArgs>
   _count?: boolean | Prisma.MedicationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["medication"]>
@@ -597,9 +597,9 @@ export type MedicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   name?: boolean
   unit?: boolean
   createdAt?: boolean
-  createdBy?: boolean
+  createdById?: boolean
   archived?: boolean
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["medication"]>
 
 export type MedicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -607,9 +607,9 @@ export type MedicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   name?: boolean
   unit?: boolean
   createdAt?: boolean
-  createdBy?: boolean
+  createdById?: boolean
   archived?: boolean
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["medication"]>
 
 export type MedicationSelectScalar = {
@@ -617,27 +617,27 @@ export type MedicationSelectScalar = {
   name?: boolean
   unit?: boolean
   createdAt?: boolean
-  createdBy?: boolean
+  createdById?: boolean
   archived?: boolean
 }
 
-export type MedicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "unit" | "createdAt" | "createdBy" | "archived", ExtArgs["result"]["medication"]>
+export type MedicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "unit" | "createdAt" | "createdById" | "archived", ExtArgs["result"]["medication"]>
 export type MedicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   transactions?: boolean | Prisma.Medication$transactionsArgs<ExtArgs>
   _count?: boolean | Prisma.MedicationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MedicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type MedicationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 
 export type $MedicationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Medication"
   objects: {
-    employee: Prisma.$EmployeePayload<ExtArgs>
+    createdBy: Prisma.$EmployeePayload<ExtArgs>
     transactions: Prisma.$TransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -645,7 +645,7 @@ export type $MedicationPayload<ExtArgs extends runtime.Types.Extensions.Internal
     name: string
     unit: string
     createdAt: Date
-    createdBy: string
+    createdById: string
     archived: boolean
   }, ExtArgs["result"]["medication"]>
   composites: {}
@@ -1041,7 +1041,7 @@ readonly fields: MedicationFieldRefs;
  */
 export interface Prisma__MedicationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  createdBy<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   transactions<T extends Prisma.Medication$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Medication$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1076,7 +1076,7 @@ export interface MedicationFieldRefs {
   readonly name: Prisma.FieldRef<"Medication", 'String'>
   readonly unit: Prisma.FieldRef<"Medication", 'String'>
   readonly createdAt: Prisma.FieldRef<"Medication", 'DateTime'>
-  readonly createdBy: Prisma.FieldRef<"Medication", 'String'>
+  readonly createdById: Prisma.FieldRef<"Medication", 'String'>
   readonly archived: Prisma.FieldRef<"Medication", 'Boolean'>
 }
     

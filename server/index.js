@@ -11,6 +11,7 @@ import { authRouter } from './modules/auth/router.js';
 import { departmentRouter } from './modules/department/router.js';
 import { employeeRouter } from './modules/employee/router.js';
 import { medicationRouter } from './modules/medication/router.js';
+import { operationRouter } from './modules/operation/router.js';
 import { patientRouter } from './modules/patient/router.js';
 import { transactionRouter } from './modules/transaction/router.js';
 
@@ -40,6 +41,7 @@ app.use( '/api', employeeRouter );
 app.use( '/api', patientRouter );
 app.use( '/api', departmentRouter );
 app.use( '/api', medicationRouter );
+app.use( '/api', operationRouter );
 app.use( '/api', transactionRouter );
 
 app.use( errorHandler );

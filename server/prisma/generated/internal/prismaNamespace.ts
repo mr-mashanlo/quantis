@@ -389,6 +389,7 @@ export const ModelName = {
   Patient: 'Patient',
   Department: 'Department',
   Medication: 'Medication',
+  Operation: 'Operation',
   Transaction: 'Transaction'
 } as const
 
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "employee" | "patient" | "department" | "medication" | "transaction"
+    modelProps: "user" | "employee" | "patient" | "department" | "medication" | "operation" | "transaction"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -779,6 +780,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Operation: {
+      payload: Prisma.$OperationPayload<ExtArgs>
+      fields: Prisma.OperationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OperationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OperationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>
+        }
+        findFirst: {
+          args: Prisma.OperationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OperationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>
+        }
+        findMany: {
+          args: Prisma.OperationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>[]
+        }
+        create: {
+          args: Prisma.OperationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>
+        }
+        createMany: {
+          args: Prisma.OperationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OperationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>[]
+        }
+        delete: {
+          args: Prisma.OperationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>
+        }
+        update: {
+          args: Prisma.OperationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>
+        }
+        deleteMany: {
+          args: Prisma.OperationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OperationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OperationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>[]
+        }
+        upsert: {
+          args: Prisma.OperationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OperationPayload>
+        }
+        aggregate: {
+          args: Prisma.OperationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOperation>
+        }
+        groupBy: {
+          args: Prisma.OperationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OperationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OperationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OperationCountAggregateOutputType> | number
+        }
+      }
+    }
     Transaction: {
       payload: Prisma.$TransactionPayload<ExtArgs>
       fields: Prisma.TransactionFieldRefs
@@ -919,7 +994,7 @@ export const PatientScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
+  createdById: 'createdById',
   archived: 'archived'
 } as const
 
@@ -930,7 +1005,7 @@ export const DepartmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
+  createdById: 'createdById',
   archived: 'archived'
 } as const
 
@@ -942,23 +1017,34 @@ export const MedicationScalarFieldEnum = {
   name: 'name',
   unit: 'unit',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
+  createdById: 'createdById',
   archived: 'archived'
 } as const
 
 export type MedicationScalarFieldEnum = (typeof MedicationScalarFieldEnum)[keyof typeof MedicationScalarFieldEnum]
 
 
+export const OperationScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  fromDepartmentId: 'fromDepartmentId',
+  toDepartmentId: 'toDepartmentId',
+  toPatientId: 'toPatientId',
+  createdAt: 'createdAt',
+  createdById: 'createdById'
+} as const
+
+export type OperationScalarFieldEnum = (typeof OperationScalarFieldEnum)[keyof typeof OperationScalarFieldEnum]
+
+
 export const TransactionScalarFieldEnum = {
   id: 'id',
   operationId: 'operationId',
   type: 'type',
+  medicationId: 'medicationId',
   amount: 'amount',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
-  medicationId: 'medicationId',
-  departmentId: 'departmentId',
-  patientId: 'patientId'
+  createdById: 'createdById'
 } as const
 
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
@@ -1054,6 +1140,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'Status'
+ */
+export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+/**
+ * Reference to a field of type 'Status[]'
+ */
+export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
     
 
 
@@ -1213,6 +1313,7 @@ export type GlobalOmitConfig = {
   patient?: Prisma.PatientOmit
   department?: Prisma.DepartmentOmit
   medication?: Prisma.MedicationOmit
+  operation?: Prisma.OperationOmit
   transaction?: Prisma.TransactionOmit
 }
 

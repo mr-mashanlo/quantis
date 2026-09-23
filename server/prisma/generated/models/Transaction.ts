@@ -38,36 +38,30 @@ export type TransactionMinAggregateOutputType = {
   id: string | null
   operationId: string | null
   type: $Enums.Type | null
+  medicationId: string | null
   amount: number | null
   createdAt: Date | null
-  createdBy: string | null
-  medicationId: string | null
-  departmentId: string | null
-  patientId: string | null
+  createdById: string | null
 }
 
 export type TransactionMaxAggregateOutputType = {
   id: string | null
   operationId: string | null
   type: $Enums.Type | null
+  medicationId: string | null
   amount: number | null
   createdAt: Date | null
-  createdBy: string | null
-  medicationId: string | null
-  departmentId: string | null
-  patientId: string | null
+  createdById: string | null
 }
 
 export type TransactionCountAggregateOutputType = {
   id: number
   operationId: number
   type: number
+  medicationId: number
   amount: number
   createdAt: number
-  createdBy: number
-  medicationId: number
-  departmentId: number
-  patientId: number
+  createdById: number
   _all: number
 }
 
@@ -84,36 +78,30 @@ export type TransactionMinAggregateInputType = {
   id?: true
   operationId?: true
   type?: true
+  medicationId?: true
   amount?: true
   createdAt?: true
-  createdBy?: true
-  medicationId?: true
-  departmentId?: true
-  patientId?: true
+  createdById?: true
 }
 
 export type TransactionMaxAggregateInputType = {
   id?: true
   operationId?: true
   type?: true
+  medicationId?: true
   amount?: true
   createdAt?: true
-  createdBy?: true
-  medicationId?: true
-  departmentId?: true
-  patientId?: true
+  createdById?: true
 }
 
 export type TransactionCountAggregateInputType = {
   id?: true
   operationId?: true
   type?: true
+  medicationId?: true
   amount?: true
   createdAt?: true
-  createdBy?: true
-  medicationId?: true
-  departmentId?: true
-  patientId?: true
+  createdById?: true
   _all?: true
 }
 
@@ -207,12 +195,10 @@ export type TransactionGroupByOutputType = {
   id: string
   operationId: string
   type: $Enums.Type
+  medicationId: string
   amount: number
   createdAt: Date
-  createdBy: string
-  medicationId: string
-  departmentId: string | null
-  patientId: string | null
+  createdById: string
   _count: TransactionCountAggregateOutputType | null
   _avg: TransactionAvgAggregateOutputType | null
   _sum: TransactionSumAggregateOutputType | null
@@ -242,32 +228,26 @@ export type TransactionWhereInput = {
   id?: Prisma.StringFilter<"Transaction"> | string
   operationId?: Prisma.StringFilter<"Transaction"> | string
   type?: Prisma.EnumTypeFilter<"Transaction"> | $Enums.Type
+  medicationId?: Prisma.StringFilter<"Transaction"> | string
   amount?: Prisma.IntFilter<"Transaction"> | number
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
-  createdBy?: Prisma.StringFilter<"Transaction"> | string
-  medicationId?: Prisma.StringFilter<"Transaction"> | string
-  departmentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  patientId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  createdById?: Prisma.StringFilter<"Transaction"> | string
+  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
   medication?: Prisma.XOR<Prisma.MedicationScalarRelationFilter, Prisma.MedicationWhereInput>
-  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
-  patient?: Prisma.XOR<Prisma.PatientNullableScalarRelationFilter, Prisma.PatientWhereInput> | null
+  createdBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
 }
 
 export type TransactionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   operationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  medicationId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
-  medicationId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  patientId?: Prisma.SortOrderInput | Prisma.SortOrder
-  employee?: Prisma.EmployeeOrderByWithRelationInput
+  createdById?: Prisma.SortOrder
+  operation?: Prisma.OperationOrderByWithRelationInput
   medication?: Prisma.MedicationOrderByWithRelationInput
-  department?: Prisma.DepartmentOrderByWithRelationInput
-  patient?: Prisma.PatientOrderByWithRelationInput
+  createdBy?: Prisma.EmployeeOrderByWithRelationInput
 }
 
 export type TransactionWhereUniqueInput = Prisma.AtLeast<{
@@ -277,28 +257,23 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[]
   operationId?: Prisma.StringFilter<"Transaction"> | string
   type?: Prisma.EnumTypeFilter<"Transaction"> | $Enums.Type
+  medicationId?: Prisma.StringFilter<"Transaction"> | string
   amount?: Prisma.IntFilter<"Transaction"> | number
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
-  createdBy?: Prisma.StringFilter<"Transaction"> | string
-  medicationId?: Prisma.StringFilter<"Transaction"> | string
-  departmentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  patientId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
+  createdById?: Prisma.StringFilter<"Transaction"> | string
+  operation?: Prisma.XOR<Prisma.OperationScalarRelationFilter, Prisma.OperationWhereInput>
   medication?: Prisma.XOR<Prisma.MedicationScalarRelationFilter, Prisma.MedicationWhereInput>
-  department?: Prisma.XOR<Prisma.DepartmentNullableScalarRelationFilter, Prisma.DepartmentWhereInput> | null
-  patient?: Prisma.XOR<Prisma.PatientNullableScalarRelationFilter, Prisma.PatientWhereInput> | null
+  createdBy?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
 }, "id">
 
 export type TransactionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   operationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  medicationId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
-  medicationId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrderInput | Prisma.SortOrder
-  patientId?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdById?: Prisma.SortOrder
   _count?: Prisma.TransactionCountOrderByAggregateInput
   _avg?: Prisma.TransactionAvgOrderByAggregateInput
   _max?: Prisma.TransactionMaxOrderByAggregateInput
@@ -313,77 +288,64 @@ export type TransactionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
   operationId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
   type?: Prisma.EnumTypeWithAggregatesFilter<"Transaction"> | $Enums.Type
+  medicationId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
   amount?: Prisma.IntWithAggregatesFilter<"Transaction"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Transaction"> | Date | string
-  createdBy?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
-  medicationId?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
-  departmentId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
-  patientId?: Prisma.StringNullableWithAggregatesFilter<"Transaction"> | string | null
+  createdById?: Prisma.StringWithAggregatesFilter<"Transaction"> | string
 }
 
 export type TransactionCreateInput = {
   id?: string
-  operationId: string
   type: $Enums.Type
   amount: number
   createdAt?: Date | string
-  employee: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
+  operation: Prisma.OperationCreateNestedOneWithoutTransactionsInput
   medication: Prisma.MedicationCreateNestedOneWithoutTransactionsInput
-  department?: Prisma.DepartmentCreateNestedOneWithoutTransactionsInput
-  patient?: Prisma.PatientCreateNestedOneWithoutTransactionsInput
+  createdBy: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
 }
 
 export type TransactionUncheckedCreateInput = {
   id?: string
   operationId: string
   type: $Enums.Type
+  medicationId: string
   amount: number
   createdAt?: Date | string
-  createdBy: string
-  medicationId: string
-  departmentId?: string | null
-  patientId?: string | null
+  createdById: string
 }
 
 export type TransactionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  employee?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutTransactionsNestedInput
   medication?: Prisma.MedicationUpdateOneRequiredWithoutTransactionsNestedInput
-  department?: Prisma.DepartmentUpdateOneWithoutTransactionsNestedInput
-  patient?: Prisma.PatientUpdateOneWithoutTransactionsNestedInput
+  createdBy?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
 }
 
 export type TransactionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
+  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TransactionCreateManyInput = {
   id?: string
   operationId: string
   type: $Enums.Type
+  medicationId: string
   amount: number
   createdAt?: Date | string
-  createdBy: string
-  medicationId: string
-  departmentId?: string | null
-  patientId?: string | null
+  createdById: string
 }
 
 export type TransactionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -393,12 +355,10 @@ export type TransactionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
+  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TransactionListRelationFilter = {
@@ -415,12 +375,10 @@ export type TransactionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   operationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  medicationId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
-  medicationId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
-  patientId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
 }
 
 export type TransactionAvgOrderByAggregateInput = {
@@ -431,153 +389,65 @@ export type TransactionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   operationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  medicationId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
-  medicationId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
-  patientId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
 }
 
 export type TransactionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   operationId?: Prisma.SortOrder
   type?: Prisma.SortOrder
+  medicationId?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  createdBy?: Prisma.SortOrder
-  medicationId?: Prisma.SortOrder
-  departmentId?: Prisma.SortOrder
-  patientId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
 }
 
 export type TransactionSumOrderByAggregateInput = {
   amount?: Prisma.SortOrder
 }
 
-export type TransactionCreateNestedManyWithoutEmployeeInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutEmployeeInput, Prisma.TransactionUncheckedCreateWithoutEmployeeInput> | Prisma.TransactionCreateWithoutEmployeeInput[] | Prisma.TransactionUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutEmployeeInput | Prisma.TransactionCreateOrConnectWithoutEmployeeInput[]
-  createMany?: Prisma.TransactionCreateManyEmployeeInputEnvelope
+export type TransactionCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutCreatedByInput, Prisma.TransactionUncheckedCreateWithoutCreatedByInput> | Prisma.TransactionCreateWithoutCreatedByInput[] | Prisma.TransactionUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutCreatedByInput | Prisma.TransactionCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.TransactionCreateManyCreatedByInputEnvelope
   connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
 }
 
-export type TransactionUncheckedCreateNestedManyWithoutEmployeeInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutEmployeeInput, Prisma.TransactionUncheckedCreateWithoutEmployeeInput> | Prisma.TransactionCreateWithoutEmployeeInput[] | Prisma.TransactionUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutEmployeeInput | Prisma.TransactionCreateOrConnectWithoutEmployeeInput[]
-  createMany?: Prisma.TransactionCreateManyEmployeeInputEnvelope
+export type TransactionUncheckedCreateNestedManyWithoutCreatedByInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutCreatedByInput, Prisma.TransactionUncheckedCreateWithoutCreatedByInput> | Prisma.TransactionCreateWithoutCreatedByInput[] | Prisma.TransactionUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutCreatedByInput | Prisma.TransactionCreateOrConnectWithoutCreatedByInput[]
+  createMany?: Prisma.TransactionCreateManyCreatedByInputEnvelope
   connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
 }
 
-export type TransactionUpdateManyWithoutEmployeeNestedInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutEmployeeInput, Prisma.TransactionUncheckedCreateWithoutEmployeeInput> | Prisma.TransactionCreateWithoutEmployeeInput[] | Prisma.TransactionUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutEmployeeInput | Prisma.TransactionCreateOrConnectWithoutEmployeeInput[]
-  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.TransactionUpsertWithWhereUniqueWithoutEmployeeInput[]
-  createMany?: Prisma.TransactionCreateManyEmployeeInputEnvelope
+export type TransactionUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutCreatedByInput, Prisma.TransactionUncheckedCreateWithoutCreatedByInput> | Prisma.TransactionCreateWithoutCreatedByInput[] | Prisma.TransactionUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutCreatedByInput | Prisma.TransactionCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.TransactionUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.TransactionCreateManyCreatedByInputEnvelope
   set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
   disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
   delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
   connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.TransactionUpdateWithWhereUniqueWithoutEmployeeInput[]
-  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutEmployeeInput | Prisma.TransactionUpdateManyWithWhereWithoutEmployeeInput[]
+  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.TransactionUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutCreatedByInput | Prisma.TransactionUpdateManyWithWhereWithoutCreatedByInput[]
   deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
 }
 
-export type TransactionUncheckedUpdateManyWithoutEmployeeNestedInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutEmployeeInput, Prisma.TransactionUncheckedCreateWithoutEmployeeInput> | Prisma.TransactionCreateWithoutEmployeeInput[] | Prisma.TransactionUncheckedCreateWithoutEmployeeInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutEmployeeInput | Prisma.TransactionCreateOrConnectWithoutEmployeeInput[]
-  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutEmployeeInput | Prisma.TransactionUpsertWithWhereUniqueWithoutEmployeeInput[]
-  createMany?: Prisma.TransactionCreateManyEmployeeInputEnvelope
+export type TransactionUncheckedUpdateManyWithoutCreatedByNestedInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutCreatedByInput, Prisma.TransactionUncheckedCreateWithoutCreatedByInput> | Prisma.TransactionCreateWithoutCreatedByInput[] | Prisma.TransactionUncheckedCreateWithoutCreatedByInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutCreatedByInput | Prisma.TransactionCreateOrConnectWithoutCreatedByInput[]
+  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutCreatedByInput | Prisma.TransactionUpsertWithWhereUniqueWithoutCreatedByInput[]
+  createMany?: Prisma.TransactionCreateManyCreatedByInputEnvelope
   set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
   disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
   delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
   connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutEmployeeInput | Prisma.TransactionUpdateWithWhereUniqueWithoutEmployeeInput[]
-  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutEmployeeInput | Prisma.TransactionUpdateManyWithWhereWithoutEmployeeInput[]
-  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
-}
-
-export type TransactionCreateNestedManyWithoutPatientInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutPatientInput, Prisma.TransactionUncheckedCreateWithoutPatientInput> | Prisma.TransactionCreateWithoutPatientInput[] | Prisma.TransactionUncheckedCreateWithoutPatientInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutPatientInput | Prisma.TransactionCreateOrConnectWithoutPatientInput[]
-  createMany?: Prisma.TransactionCreateManyPatientInputEnvelope
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-}
-
-export type TransactionUncheckedCreateNestedManyWithoutPatientInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutPatientInput, Prisma.TransactionUncheckedCreateWithoutPatientInput> | Prisma.TransactionCreateWithoutPatientInput[] | Prisma.TransactionUncheckedCreateWithoutPatientInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutPatientInput | Prisma.TransactionCreateOrConnectWithoutPatientInput[]
-  createMany?: Prisma.TransactionCreateManyPatientInputEnvelope
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-}
-
-export type TransactionUpdateManyWithoutPatientNestedInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutPatientInput, Prisma.TransactionUncheckedCreateWithoutPatientInput> | Prisma.TransactionCreateWithoutPatientInput[] | Prisma.TransactionUncheckedCreateWithoutPatientInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutPatientInput | Prisma.TransactionCreateOrConnectWithoutPatientInput[]
-  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutPatientInput | Prisma.TransactionUpsertWithWhereUniqueWithoutPatientInput[]
-  createMany?: Prisma.TransactionCreateManyPatientInputEnvelope
-  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutPatientInput | Prisma.TransactionUpdateWithWhereUniqueWithoutPatientInput[]
-  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutPatientInput | Prisma.TransactionUpdateManyWithWhereWithoutPatientInput[]
-  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
-}
-
-export type TransactionUncheckedUpdateManyWithoutPatientNestedInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutPatientInput, Prisma.TransactionUncheckedCreateWithoutPatientInput> | Prisma.TransactionCreateWithoutPatientInput[] | Prisma.TransactionUncheckedCreateWithoutPatientInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutPatientInput | Prisma.TransactionCreateOrConnectWithoutPatientInput[]
-  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutPatientInput | Prisma.TransactionUpsertWithWhereUniqueWithoutPatientInput[]
-  createMany?: Prisma.TransactionCreateManyPatientInputEnvelope
-  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutPatientInput | Prisma.TransactionUpdateWithWhereUniqueWithoutPatientInput[]
-  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutPatientInput | Prisma.TransactionUpdateManyWithWhereWithoutPatientInput[]
-  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
-}
-
-export type TransactionCreateNestedManyWithoutDepartmentInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutDepartmentInput, Prisma.TransactionUncheckedCreateWithoutDepartmentInput> | Prisma.TransactionCreateWithoutDepartmentInput[] | Prisma.TransactionUncheckedCreateWithoutDepartmentInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutDepartmentInput | Prisma.TransactionCreateOrConnectWithoutDepartmentInput[]
-  createMany?: Prisma.TransactionCreateManyDepartmentInputEnvelope
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-}
-
-export type TransactionUncheckedCreateNestedManyWithoutDepartmentInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutDepartmentInput, Prisma.TransactionUncheckedCreateWithoutDepartmentInput> | Prisma.TransactionCreateWithoutDepartmentInput[] | Prisma.TransactionUncheckedCreateWithoutDepartmentInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutDepartmentInput | Prisma.TransactionCreateOrConnectWithoutDepartmentInput[]
-  createMany?: Prisma.TransactionCreateManyDepartmentInputEnvelope
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-}
-
-export type TransactionUpdateManyWithoutDepartmentNestedInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutDepartmentInput, Prisma.TransactionUncheckedCreateWithoutDepartmentInput> | Prisma.TransactionCreateWithoutDepartmentInput[] | Prisma.TransactionUncheckedCreateWithoutDepartmentInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutDepartmentInput | Prisma.TransactionCreateOrConnectWithoutDepartmentInput[]
-  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.TransactionUpsertWithWhereUniqueWithoutDepartmentInput[]
-  createMany?: Prisma.TransactionCreateManyDepartmentInputEnvelope
-  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.TransactionUpdateWithWhereUniqueWithoutDepartmentInput[]
-  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutDepartmentInput | Prisma.TransactionUpdateManyWithWhereWithoutDepartmentInput[]
-  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
-}
-
-export type TransactionUncheckedUpdateManyWithoutDepartmentNestedInput = {
-  create?: Prisma.XOR<Prisma.TransactionCreateWithoutDepartmentInput, Prisma.TransactionUncheckedCreateWithoutDepartmentInput> | Prisma.TransactionCreateWithoutDepartmentInput[] | Prisma.TransactionUncheckedCreateWithoutDepartmentInput[]
-  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutDepartmentInput | Prisma.TransactionCreateOrConnectWithoutDepartmentInput[]
-  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.TransactionUpsertWithWhereUniqueWithoutDepartmentInput[]
-  createMany?: Prisma.TransactionCreateManyDepartmentInputEnvelope
-  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
-  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.TransactionUpdateWithWhereUniqueWithoutDepartmentInput[]
-  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutDepartmentInput | Prisma.TransactionUpdateManyWithWhereWithoutDepartmentInput[]
+  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutCreatedByInput | Prisma.TransactionUpdateWithWhereUniqueWithoutCreatedByInput[]
+  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutCreatedByInput | Prisma.TransactionUpdateManyWithWhereWithoutCreatedByInput[]
   deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
 }
 
@@ -623,6 +493,48 @@ export type TransactionUncheckedUpdateManyWithoutMedicationNestedInput = {
   deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
 }
 
+export type TransactionCreateNestedManyWithoutOperationInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutOperationInput, Prisma.TransactionUncheckedCreateWithoutOperationInput> | Prisma.TransactionCreateWithoutOperationInput[] | Prisma.TransactionUncheckedCreateWithoutOperationInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutOperationInput | Prisma.TransactionCreateOrConnectWithoutOperationInput[]
+  createMany?: Prisma.TransactionCreateManyOperationInputEnvelope
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+}
+
+export type TransactionUncheckedCreateNestedManyWithoutOperationInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutOperationInput, Prisma.TransactionUncheckedCreateWithoutOperationInput> | Prisma.TransactionCreateWithoutOperationInput[] | Prisma.TransactionUncheckedCreateWithoutOperationInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutOperationInput | Prisma.TransactionCreateOrConnectWithoutOperationInput[]
+  createMany?: Prisma.TransactionCreateManyOperationInputEnvelope
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+}
+
+export type TransactionUpdateManyWithoutOperationNestedInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutOperationInput, Prisma.TransactionUncheckedCreateWithoutOperationInput> | Prisma.TransactionCreateWithoutOperationInput[] | Prisma.TransactionUncheckedCreateWithoutOperationInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutOperationInput | Prisma.TransactionCreateOrConnectWithoutOperationInput[]
+  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutOperationInput | Prisma.TransactionUpsertWithWhereUniqueWithoutOperationInput[]
+  createMany?: Prisma.TransactionCreateManyOperationInputEnvelope
+  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutOperationInput | Prisma.TransactionUpdateWithWhereUniqueWithoutOperationInput[]
+  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutOperationInput | Prisma.TransactionUpdateManyWithWhereWithoutOperationInput[]
+  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
+}
+
+export type TransactionUncheckedUpdateManyWithoutOperationNestedInput = {
+  create?: Prisma.XOR<Prisma.TransactionCreateWithoutOperationInput, Prisma.TransactionUncheckedCreateWithoutOperationInput> | Prisma.TransactionCreateWithoutOperationInput[] | Prisma.TransactionUncheckedCreateWithoutOperationInput[]
+  connectOrCreate?: Prisma.TransactionCreateOrConnectWithoutOperationInput | Prisma.TransactionCreateOrConnectWithoutOperationInput[]
+  upsert?: Prisma.TransactionUpsertWithWhereUniqueWithoutOperationInput | Prisma.TransactionUpsertWithWhereUniqueWithoutOperationInput[]
+  createMany?: Prisma.TransactionCreateManyOperationInputEnvelope
+  set?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  disconnect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  delete?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  connect?: Prisma.TransactionWhereUniqueInput | Prisma.TransactionWhereUniqueInput[]
+  update?: Prisma.TransactionUpdateWithWhereUniqueWithoutOperationInput | Prisma.TransactionUpdateWithWhereUniqueWithoutOperationInput[]
+  updateMany?: Prisma.TransactionUpdateManyWithWhereWithoutOperationInput | Prisma.TransactionUpdateManyWithWhereWithoutOperationInput[]
+  deleteMany?: Prisma.TransactionScalarWhereInput | Prisma.TransactionScalarWhereInput[]
+}
+
 export type EnumTypeFieldUpdateOperationsInput = {
   set?: $Enums.Type
 }
@@ -635,52 +547,48 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type TransactionCreateWithoutEmployeeInput = {
+export type TransactionCreateWithoutCreatedByInput = {
   id?: string
-  operationId: string
   type: $Enums.Type
   amount: number
   createdAt?: Date | string
+  operation: Prisma.OperationCreateNestedOneWithoutTransactionsInput
   medication: Prisma.MedicationCreateNestedOneWithoutTransactionsInput
-  department?: Prisma.DepartmentCreateNestedOneWithoutTransactionsInput
-  patient?: Prisma.PatientCreateNestedOneWithoutTransactionsInput
 }
 
-export type TransactionUncheckedCreateWithoutEmployeeInput = {
+export type TransactionUncheckedCreateWithoutCreatedByInput = {
   id?: string
   operationId: string
   type: $Enums.Type
+  medicationId: string
   amount: number
   createdAt?: Date | string
-  medicationId: string
-  departmentId?: string | null
-  patientId?: string | null
 }
 
-export type TransactionCreateOrConnectWithoutEmployeeInput = {
+export type TransactionCreateOrConnectWithoutCreatedByInput = {
   where: Prisma.TransactionWhereUniqueInput
-  create: Prisma.XOR<Prisma.TransactionCreateWithoutEmployeeInput, Prisma.TransactionUncheckedCreateWithoutEmployeeInput>
+  create: Prisma.XOR<Prisma.TransactionCreateWithoutCreatedByInput, Prisma.TransactionUncheckedCreateWithoutCreatedByInput>
 }
 
-export type TransactionCreateManyEmployeeInputEnvelope = {
-  data: Prisma.TransactionCreateManyEmployeeInput | Prisma.TransactionCreateManyEmployeeInput[]
+export type TransactionCreateManyCreatedByInputEnvelope = {
+  data: Prisma.TransactionCreateManyCreatedByInput | Prisma.TransactionCreateManyCreatedByInput[]
   skipDuplicates?: boolean
 }
 
-export type TransactionUpsertWithWhereUniqueWithoutEmployeeInput = {
+export type TransactionUpsertWithWhereUniqueWithoutCreatedByInput = {
   where: Prisma.TransactionWhereUniqueInput
-  update: Prisma.XOR<Prisma.TransactionUpdateWithoutEmployeeInput, Prisma.TransactionUncheckedUpdateWithoutEmployeeInput>
-  create: Prisma.XOR<Prisma.TransactionCreateWithoutEmployeeInput, Prisma.TransactionUncheckedCreateWithoutEmployeeInput>
+  update: Prisma.XOR<Prisma.TransactionUpdateWithoutCreatedByInput, Prisma.TransactionUncheckedUpdateWithoutCreatedByInput>
+  create: Prisma.XOR<Prisma.TransactionCreateWithoutCreatedByInput, Prisma.TransactionUncheckedCreateWithoutCreatedByInput>
 }
 
-export type TransactionUpdateWithWhereUniqueWithoutEmployeeInput = {
+export type TransactionUpdateWithWhereUniqueWithoutCreatedByInput = {
   where: Prisma.TransactionWhereUniqueInput
-  data: Prisma.XOR<Prisma.TransactionUpdateWithoutEmployeeInput, Prisma.TransactionUncheckedUpdateWithoutEmployeeInput>
+  data: Prisma.XOR<Prisma.TransactionUpdateWithoutCreatedByInput, Prisma.TransactionUncheckedUpdateWithoutCreatedByInput>
 }
 
-export type TransactionUpdateManyWithWhereWithoutEmployeeInput = {
+export type TransactionUpdateManyWithWhereWithoutCreatedByInput = {
   where: Prisma.TransactionScalarWhereInput
-  data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutEmployeeInput>
+  data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutCreatedByInput>
 }
 
 export type TransactionScalarWhereInput = {
@@ -690,119 +598,19 @@ export type TransactionScalarWhereInput = {
   id?: Prisma.StringFilter<"Transaction"> | string
   operationId?: Prisma.StringFilter<"Transaction"> | string
   type?: Prisma.EnumTypeFilter<"Transaction"> | $Enums.Type
+  medicationId?: Prisma.StringFilter<"Transaction"> | string
   amount?: Prisma.IntFilter<"Transaction"> | number
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string
-  createdBy?: Prisma.StringFilter<"Transaction"> | string
-  medicationId?: Prisma.StringFilter<"Transaction"> | string
-  departmentId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-  patientId?: Prisma.StringNullableFilter<"Transaction"> | string | null
-}
-
-export type TransactionCreateWithoutPatientInput = {
-  id?: string
-  operationId: string
-  type: $Enums.Type
-  amount: number
-  createdAt?: Date | string
-  employee: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
-  medication: Prisma.MedicationCreateNestedOneWithoutTransactionsInput
-  department?: Prisma.DepartmentCreateNestedOneWithoutTransactionsInput
-}
-
-export type TransactionUncheckedCreateWithoutPatientInput = {
-  id?: string
-  operationId: string
-  type: $Enums.Type
-  amount: number
-  createdAt?: Date | string
-  createdBy: string
-  medicationId: string
-  departmentId?: string | null
-}
-
-export type TransactionCreateOrConnectWithoutPatientInput = {
-  where: Prisma.TransactionWhereUniqueInput
-  create: Prisma.XOR<Prisma.TransactionCreateWithoutPatientInput, Prisma.TransactionUncheckedCreateWithoutPatientInput>
-}
-
-export type TransactionCreateManyPatientInputEnvelope = {
-  data: Prisma.TransactionCreateManyPatientInput | Prisma.TransactionCreateManyPatientInput[]
-  skipDuplicates?: boolean
-}
-
-export type TransactionUpsertWithWhereUniqueWithoutPatientInput = {
-  where: Prisma.TransactionWhereUniqueInput
-  update: Prisma.XOR<Prisma.TransactionUpdateWithoutPatientInput, Prisma.TransactionUncheckedUpdateWithoutPatientInput>
-  create: Prisma.XOR<Prisma.TransactionCreateWithoutPatientInput, Prisma.TransactionUncheckedCreateWithoutPatientInput>
-}
-
-export type TransactionUpdateWithWhereUniqueWithoutPatientInput = {
-  where: Prisma.TransactionWhereUniqueInput
-  data: Prisma.XOR<Prisma.TransactionUpdateWithoutPatientInput, Prisma.TransactionUncheckedUpdateWithoutPatientInput>
-}
-
-export type TransactionUpdateManyWithWhereWithoutPatientInput = {
-  where: Prisma.TransactionScalarWhereInput
-  data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutPatientInput>
-}
-
-export type TransactionCreateWithoutDepartmentInput = {
-  id?: string
-  operationId: string
-  type: $Enums.Type
-  amount: number
-  createdAt?: Date | string
-  employee: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
-  medication: Prisma.MedicationCreateNestedOneWithoutTransactionsInput
-  patient?: Prisma.PatientCreateNestedOneWithoutTransactionsInput
-}
-
-export type TransactionUncheckedCreateWithoutDepartmentInput = {
-  id?: string
-  operationId: string
-  type: $Enums.Type
-  amount: number
-  createdAt?: Date | string
-  createdBy: string
-  medicationId: string
-  patientId?: string | null
-}
-
-export type TransactionCreateOrConnectWithoutDepartmentInput = {
-  where: Prisma.TransactionWhereUniqueInput
-  create: Prisma.XOR<Prisma.TransactionCreateWithoutDepartmentInput, Prisma.TransactionUncheckedCreateWithoutDepartmentInput>
-}
-
-export type TransactionCreateManyDepartmentInputEnvelope = {
-  data: Prisma.TransactionCreateManyDepartmentInput | Prisma.TransactionCreateManyDepartmentInput[]
-  skipDuplicates?: boolean
-}
-
-export type TransactionUpsertWithWhereUniqueWithoutDepartmentInput = {
-  where: Prisma.TransactionWhereUniqueInput
-  update: Prisma.XOR<Prisma.TransactionUpdateWithoutDepartmentInput, Prisma.TransactionUncheckedUpdateWithoutDepartmentInput>
-  create: Prisma.XOR<Prisma.TransactionCreateWithoutDepartmentInput, Prisma.TransactionUncheckedCreateWithoutDepartmentInput>
-}
-
-export type TransactionUpdateWithWhereUniqueWithoutDepartmentInput = {
-  where: Prisma.TransactionWhereUniqueInput
-  data: Prisma.XOR<Prisma.TransactionUpdateWithoutDepartmentInput, Prisma.TransactionUncheckedUpdateWithoutDepartmentInput>
-}
-
-export type TransactionUpdateManyWithWhereWithoutDepartmentInput = {
-  where: Prisma.TransactionScalarWhereInput
-  data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutDepartmentInput>
+  createdById?: Prisma.StringFilter<"Transaction"> | string
 }
 
 export type TransactionCreateWithoutMedicationInput = {
   id?: string
-  operationId: string
   type: $Enums.Type
   amount: number
   createdAt?: Date | string
-  employee: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
-  department?: Prisma.DepartmentCreateNestedOneWithoutTransactionsInput
-  patient?: Prisma.PatientCreateNestedOneWithoutTransactionsInput
+  operation: Prisma.OperationCreateNestedOneWithoutTransactionsInput
+  createdBy: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
 }
 
 export type TransactionUncheckedCreateWithoutMedicationInput = {
@@ -811,9 +619,7 @@ export type TransactionUncheckedCreateWithoutMedicationInput = {
   type: $Enums.Type
   amount: number
   createdAt?: Date | string
-  createdBy: string
-  departmentId?: string | null
-  patientId?: string | null
+  createdById: string
 }
 
 export type TransactionCreateOrConnectWithoutMedicationInput = {
@@ -842,136 +648,84 @@ export type TransactionUpdateManyWithWhereWithoutMedicationInput = {
   data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutMedicationInput>
 }
 
-export type TransactionCreateManyEmployeeInput = {
+export type TransactionCreateWithoutOperationInput = {
   id?: string
-  operationId: string
   type: $Enums.Type
   amount: number
   createdAt?: Date | string
+  medication: Prisma.MedicationCreateNestedOneWithoutTransactionsInput
+  createdBy: Prisma.EmployeeCreateNestedOneWithoutTransactionsInput
+}
+
+export type TransactionUncheckedCreateWithoutOperationInput = {
+  id?: string
+  type: $Enums.Type
   medicationId: string
-  departmentId?: string | null
-  patientId?: string | null
+  amount: number
+  createdAt?: Date | string
+  createdById: string
 }
 
-export type TransactionUpdateWithoutEmployeeInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  medication?: Prisma.MedicationUpdateOneRequiredWithoutTransactionsNestedInput
-  department?: Prisma.DepartmentUpdateOneWithoutTransactionsNestedInput
-  patient?: Prisma.PatientUpdateOneWithoutTransactionsNestedInput
+export type TransactionCreateOrConnectWithoutOperationInput = {
+  where: Prisma.TransactionWhereUniqueInput
+  create: Prisma.XOR<Prisma.TransactionCreateWithoutOperationInput, Prisma.TransactionUncheckedCreateWithoutOperationInput>
 }
 
-export type TransactionUncheckedUpdateWithoutEmployeeInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type TransactionCreateManyOperationInputEnvelope = {
+  data: Prisma.TransactionCreateManyOperationInput | Prisma.TransactionCreateManyOperationInput[]
+  skipDuplicates?: boolean
 }
 
-export type TransactionUncheckedUpdateManyWithoutEmployeeInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type TransactionUpsertWithWhereUniqueWithoutOperationInput = {
+  where: Prisma.TransactionWhereUniqueInput
+  update: Prisma.XOR<Prisma.TransactionUpdateWithoutOperationInput, Prisma.TransactionUncheckedUpdateWithoutOperationInput>
+  create: Prisma.XOR<Prisma.TransactionCreateWithoutOperationInput, Prisma.TransactionUncheckedCreateWithoutOperationInput>
 }
 
-export type TransactionCreateManyPatientInput = {
+export type TransactionUpdateWithWhereUniqueWithoutOperationInput = {
+  where: Prisma.TransactionWhereUniqueInput
+  data: Prisma.XOR<Prisma.TransactionUpdateWithoutOperationInput, Prisma.TransactionUncheckedUpdateWithoutOperationInput>
+}
+
+export type TransactionUpdateManyWithWhereWithoutOperationInput = {
+  where: Prisma.TransactionScalarWhereInput
+  data: Prisma.XOR<Prisma.TransactionUpdateManyMutationInput, Prisma.TransactionUncheckedUpdateManyWithoutOperationInput>
+}
+
+export type TransactionCreateManyCreatedByInput = {
   id?: string
   operationId: string
   type: $Enums.Type
+  medicationId: string
   amount: number
   createdAt?: Date | string
-  createdBy: string
-  medicationId: string
-  departmentId?: string | null
 }
 
-export type TransactionUpdateWithoutPatientInput = {
+export type TransactionUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  employee?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutTransactionsNestedInput
   medication?: Prisma.MedicationUpdateOneRequiredWithoutTransactionsNestedInput
-  department?: Prisma.DepartmentUpdateOneWithoutTransactionsNestedInput
 }
 
-export type TransactionUncheckedUpdateWithoutPatientInput = {
+export type TransactionUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
   medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type TransactionUncheckedUpdateManyWithoutPatientInput = {
+export type TransactionUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
   medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type TransactionCreateManyDepartmentInput = {
-  id?: string
-  operationId: string
-  type: $Enums.Type
-  amount: number
-  createdAt?: Date | string
-  createdBy: string
-  medicationId: string
-  patientId?: string | null
-}
-
-export type TransactionUpdateWithoutDepartmentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  employee?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
-  medication?: Prisma.MedicationUpdateOneRequiredWithoutTransactionsNestedInput
-  patient?: Prisma.PatientUpdateOneWithoutTransactionsNestedInput
-}
-
-export type TransactionUncheckedUpdateWithoutDepartmentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type TransactionUncheckedUpdateManyWithoutDepartmentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TransactionCreateManyMedicationInput = {
@@ -980,20 +734,16 @@ export type TransactionCreateManyMedicationInput = {
   type: $Enums.Type
   amount: number
   createdAt?: Date | string
-  createdBy: string
-  departmentId?: string | null
-  patientId?: string | null
+  createdById: string
 }
 
 export type TransactionUpdateWithoutMedicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  operationId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  employee?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
-  department?: Prisma.DepartmentUpdateOneWithoutTransactionsNestedInput
-  patient?: Prisma.PatientUpdateOneWithoutTransactionsNestedInput
+  operation?: Prisma.OperationUpdateOneRequiredWithoutTransactionsNestedInput
+  createdBy?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
 }
 
 export type TransactionUncheckedUpdateWithoutMedicationInput = {
@@ -1002,9 +752,7 @@ export type TransactionUncheckedUpdateWithoutMedicationInput = {
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TransactionUncheckedUpdateManyWithoutMedicationInput = {
@@ -1013,9 +761,43 @@ export type TransactionUncheckedUpdateManyWithoutMedicationInput = {
   type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  createdBy?: Prisma.StringFieldUpdateOperationsInput | string
-  departmentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type TransactionCreateManyOperationInput = {
+  id?: string
+  type: $Enums.Type
+  medicationId: string
+  amount: number
+  createdAt?: Date | string
+  createdById: string
+}
+
+export type TransactionUpdateWithoutOperationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  medication?: Prisma.MedicationUpdateOneRequiredWithoutTransactionsNestedInput
+  createdBy?: Prisma.EmployeeUpdateOneRequiredWithoutTransactionsNestedInput
+}
+
+export type TransactionUncheckedUpdateWithoutOperationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
+  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type TransactionUncheckedUpdateManyWithoutOperationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumTypeFieldUpdateOperationsInput | $Enums.Type
+  medicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1024,100 +806,83 @@ export type TransactionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   operationId?: boolean
   type?: boolean
+  medicationId?: boolean
   amount?: boolean
   createdAt?: boolean
-  createdBy?: boolean
-  medicationId?: boolean
-  departmentId?: boolean
-  patientId?: boolean
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdById?: boolean
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   medication?: boolean | Prisma.MedicationDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.Transaction$departmentArgs<ExtArgs>
-  patient?: boolean | Prisma.Transaction$patientArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   operationId?: boolean
   type?: boolean
+  medicationId?: boolean
   amount?: boolean
   createdAt?: boolean
-  createdBy?: boolean
-  medicationId?: boolean
-  departmentId?: boolean
-  patientId?: boolean
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdById?: boolean
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   medication?: boolean | Prisma.MedicationDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.Transaction$departmentArgs<ExtArgs>
-  patient?: boolean | Prisma.Transaction$patientArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   operationId?: boolean
   type?: boolean
+  medicationId?: boolean
   amount?: boolean
   createdAt?: boolean
-  createdBy?: boolean
-  medicationId?: boolean
-  departmentId?: boolean
-  patientId?: boolean
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  createdById?: boolean
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   medication?: boolean | Prisma.MedicationDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.Transaction$departmentArgs<ExtArgs>
-  patient?: boolean | Prisma.Transaction$patientArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["transaction"]>
 
 export type TransactionSelectScalar = {
   id?: boolean
   operationId?: boolean
   type?: boolean
+  medicationId?: boolean
   amount?: boolean
   createdAt?: boolean
-  createdBy?: boolean
-  medicationId?: boolean
-  departmentId?: boolean
-  patientId?: boolean
+  createdById?: boolean
 }
 
-export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "operationId" | "type" | "amount" | "createdAt" | "createdBy" | "medicationId" | "departmentId" | "patientId", ExtArgs["result"]["transaction"]>
+export type TransactionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "operationId" | "type" | "medicationId" | "amount" | "createdAt" | "createdById", ExtArgs["result"]["transaction"]>
 export type TransactionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   medication?: boolean | Prisma.MedicationDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.Transaction$departmentArgs<ExtArgs>
-  patient?: boolean | Prisma.Transaction$patientArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type TransactionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   medication?: boolean | Prisma.MedicationDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.Transaction$departmentArgs<ExtArgs>
-  patient?: boolean | Prisma.Transaction$patientArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type TransactionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
+  operation?: boolean | Prisma.OperationDefaultArgs<ExtArgs>
   medication?: boolean | Prisma.MedicationDefaultArgs<ExtArgs>
-  department?: boolean | Prisma.Transaction$departmentArgs<ExtArgs>
-  patient?: boolean | Prisma.Transaction$patientArgs<ExtArgs>
+  createdBy?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 
 export type $TransactionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Transaction"
   objects: {
-    employee: Prisma.$EmployeePayload<ExtArgs>
+    operation: Prisma.$OperationPayload<ExtArgs>
     medication: Prisma.$MedicationPayload<ExtArgs>
-    department: Prisma.$DepartmentPayload<ExtArgs> | null
-    patient: Prisma.$PatientPayload<ExtArgs> | null
+    createdBy: Prisma.$EmployeePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     operationId: string
     type: $Enums.Type
+    medicationId: string
     amount: number
     createdAt: Date
-    createdBy: string
-    medicationId: string
-    departmentId: string | null
-    patientId: string | null
+    createdById: string
   }, ExtArgs["result"]["transaction"]>
   composites: {}
 }
@@ -1512,10 +1277,9 @@ readonly fields: TransactionFieldRefs;
  */
 export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  operation<T extends Prisma.OperationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OperationDefaultArgs<ExtArgs>>): Prisma.Prisma__OperationClient<runtime.Types.Result.GetResult<Prisma.$OperationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   medication<T extends Prisma.MedicationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MedicationDefaultArgs<ExtArgs>>): Prisma.Prisma__MedicationClient<runtime.Types.Result.GetResult<Prisma.$MedicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  department<T extends Prisma.Transaction$departmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$departmentArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  patient<T extends Prisma.Transaction$patientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Transaction$patientArgs<ExtArgs>>): Prisma.Prisma__PatientClient<runtime.Types.Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  createdBy<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1548,12 +1312,10 @@ export interface TransactionFieldRefs {
   readonly id: Prisma.FieldRef<"Transaction", 'String'>
   readonly operationId: Prisma.FieldRef<"Transaction", 'String'>
   readonly type: Prisma.FieldRef<"Transaction", 'Type'>
+  readonly medicationId: Prisma.FieldRef<"Transaction", 'String'>
   readonly amount: Prisma.FieldRef<"Transaction", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Transaction", 'DateTime'>
-  readonly createdBy: Prisma.FieldRef<"Transaction", 'String'>
-  readonly medicationId: Prisma.FieldRef<"Transaction", 'String'>
-  readonly departmentId: Prisma.FieldRef<"Transaction", 'String'>
-  readonly patientId: Prisma.FieldRef<"Transaction", 'String'>
+  readonly createdById: Prisma.FieldRef<"Transaction", 'String'>
 }
     
 
@@ -1952,44 +1714,6 @@ export type TransactionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many Transactions to delete.
    */
   limit?: number
-}
-
-/**
- * Transaction.department
- */
-export type Transaction$departmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Department
-   */
-  select?: Prisma.DepartmentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Department
-   */
-  omit?: Prisma.DepartmentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.DepartmentInclude<ExtArgs> | null
-  where?: Prisma.DepartmentWhereInput
-}
-
-/**
- * Transaction.patient
- */
-export type Transaction$patientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Patient
-   */
-  select?: Prisma.PatientSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Patient
-   */
-  omit?: Prisma.PatientOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PatientInclude<ExtArgs> | null
-  where?: Prisma.PatientWhereInput
 }
 
 /**

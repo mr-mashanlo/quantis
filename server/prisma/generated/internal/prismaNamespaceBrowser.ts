@@ -56,6 +56,7 @@ export const ModelName = {
   Patient: 'Patient',
   Department: 'Department',
   Medication: 'Medication',
+  Operation: 'Operation',
   Transaction: 'Transaction'
 } as const
 
@@ -102,7 +103,7 @@ export const PatientScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
+  createdById: 'createdById',
   archived: 'archived'
 } as const
 
@@ -113,7 +114,7 @@ export const DepartmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
+  createdById: 'createdById',
   archived: 'archived'
 } as const
 
@@ -125,23 +126,34 @@ export const MedicationScalarFieldEnum = {
   name: 'name',
   unit: 'unit',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
+  createdById: 'createdById',
   archived: 'archived'
 } as const
 
 export type MedicationScalarFieldEnum = (typeof MedicationScalarFieldEnum)[keyof typeof MedicationScalarFieldEnum]
 
 
+export const OperationScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  fromDepartmentId: 'fromDepartmentId',
+  toDepartmentId: 'toDepartmentId',
+  toPatientId: 'toPatientId',
+  createdAt: 'createdAt',
+  createdById: 'createdById'
+} as const
+
+export type OperationScalarFieldEnum = (typeof OperationScalarFieldEnum)[keyof typeof OperationScalarFieldEnum]
+
+
 export const TransactionScalarFieldEnum = {
   id: 'id',
   operationId: 'operationId',
   type: 'type',
+  medicationId: 'medicationId',
   amount: 'amount',
   createdAt: 'createdAt',
-  createdBy: 'createdBy',
-  medicationId: 'medicationId',
-  departmentId: 'departmentId',
-  patientId: 'patientId'
+  createdById: 'createdById'
 } as const
 
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]

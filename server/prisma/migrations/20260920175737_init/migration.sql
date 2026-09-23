@@ -62,6 +62,15 @@ CREATE TABLE "Medication" (
 );
 
 -- CreateTable
+CREATE TABLE "Operation" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdBy" TEXT NOT NULL,
+
+    CONSTRAINT "Operation_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Transaction" (
     "id" TEXT NOT NULL,
     "operationId" TEXT NOT NULL,
@@ -101,6 +110,9 @@ CREATE INDEX "Department_createdBy_idx" ON "Department"("createdBy");
 CREATE INDEX "Medication_createdBy_idx" ON "Medication"("createdBy");
 
 -- CreateIndex
+CREATE INDEX "Operation_createdBy_idx" ON "Operation"("createdBy");
+
+-- CreateIndex
 CREATE INDEX "Transaction_operationId_idx" ON "Transaction"("operationId");
 
 -- CreateIndex
@@ -117,6 +129,12 @@ ALTER TABLE "Department" ADD CONSTRAINT "Department_createdBy_fkey" FOREIGN KEY 
 
 -- AddForeignKey
 ALTER TABLE "Medication" ADD CONSTRAINT "Medication_createdBy_fkey" FOREIGN KEY ("createdBy") REFERENCES "Employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Operation" ADD CONSTRAINT "Operation_createdBy_fkey" FOREIGN KEY ("createdBy") REFERENCES "Employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_operationId_fkey" FOREIGN KEY ("operationId") REFERENCES "Operation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_createdBy_fkey" FOREIGN KEY ("createdBy") REFERENCES "Employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

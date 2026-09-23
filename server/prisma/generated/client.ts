@@ -67,6 +67,11 @@ export type Department = Prisma.DepartmentModel
  */
 export type Medication = Prisma.MedicationModel
 /**
+ * Model Operation
+ * 
+ */
+export type Operation = Prisma.OperationModel
+/**
  * Model Transaction
  * 
  */

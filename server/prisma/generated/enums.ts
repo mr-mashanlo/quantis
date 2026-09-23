@@ -25,3 +25,12 @@ export const Type = {
 } as const
 
 export type Type = (typeof Type)[keyof typeof Type]
+
+
+export const Status = {
+  DRAFT: 'DRAFT',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type Status = (typeof Status)[keyof typeof Status]
