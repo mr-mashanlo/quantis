@@ -1,8 +1,19 @@
-# Quantis
+# Quantis: Fullstack Medication Tracking CRM
+
+Quantis is a fullstack CRM application designed for the efficient tracking and accounting of medications.
+
+## Technologies & Tools
+- React
+- Node.js, Express
+- PostgreSQL, Prisma ORM
+- Docker
+
+## Methodologies & Architecture
+- Feature-Sliced Design
+- 3-Layer Architecture
+- Ledger Pattern
 
 ## Getting Started
-
-### Run project
 ```bash
 # Create a .env file
 cp .env.local .env
@@ -19,7 +30,7 @@ docker compose down -v
 docker compose -f compose.production.yaml down -v
 ```
 
-### Usefull commands
+## Usefull commands
 ```bash
 # Log service
 docker logs node -f
