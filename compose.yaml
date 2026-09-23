@@ -20,6 +20,23 @@ services:
       retries: 5
     restart: unless-stopped
 
+  studio:
+    image: node:26-alpine
+    container_name: studio
+    working_dir: /usr/src/app
+    command: npx prisma studio --port 5555 --browser none
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - "5555:5555"
+    networks:
+      - prisma-network
+    depends_on:
+      db:
+        condition: service_healthy
+      server:
+        condition: service_started
+
   server:
     build:
       context: ./server
@@ -37,22 +54,17 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
-  studio:
-    image: node:26-alpine
-    container_name: studio
-    working_dir: /usr/src/app
-    command: npx prisma studio --port 5555 --browser none
-    volumes:
-      - ./server:/usr/src/app
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile
+    container_name: react
     ports:
-      - "5555:5555"
-    networks:
-      - prisma-network
-    depends_on:
-      db:
-        condition: service_healthy
-      server:
-        condition: service_started
+      - "5173:5173"
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
 
 networks:
   prisma-network:

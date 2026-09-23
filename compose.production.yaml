@@ -34,9 +34,9 @@ services:
     build:
       context: ./client
       dockerfile: dockerfile.production
-    container_name: astro_production
+    container_name: react_production
     networks:
-      - mern-network
+      - prisma-network
     ports:
       - "80:80"
     depends_on:
