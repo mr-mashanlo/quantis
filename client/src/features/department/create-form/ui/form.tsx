@@ -1,10 +1,10 @@
-import { Button, Field, Input } from '@headlessui/react';
 import { useSelector } from '@tanstack/react-form';
-import { OctagonAlert, TypeOutline } from 'lucide-react';
 import { type DetailedHTMLProps, type FC, type FormHTMLAttributes, type SubmitEvent } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { CreateDepartmentSchema } from '@/entities/department';
+import { Button } from '@/shared/ui/button';
+import { TextInput } from '@/shared/ui/form';
 
 import { useCreateDepartmentForm } from '../model/hook';
 
@@ -25,21 +25,14 @@ export const CreateDepartmentForm: FC<Props> = ( { className, ...props } ) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className={twMerge( 'w-full sm:w-165 relative', className )} {...props}>
+    <form onSubmit={handleFormSubmit} className={twMerge( 'w-full sm:w-90 relative', className )} {...props}>
       <h3 className="mb-5 text-xl text-center font-bold">Create department</h3>
-      <div className="w-full sm:w-90 mx-auto grid gap-4 sm:gap-5">
+      <div className="grid gap-4 sm:gap-5">
         <form.Field name="name" validators={{ onChange: CreateDepartmentSchema.shape.name }}>
-          {field =>
-            <Field className="block relative">
-              <Input type="text" name={field.name} onChange={e => field.handleChange( e.target.value )} data-error={field.state.meta.isValid ? false : true} placeholder="Name" className="peer w-full p-4 pl-11 rounded-xl bg-zinc-100 dark:bg-zinc-800 placeholder:text-zinc-300 dark:placeholder:text-zinc-600 focus:bg-transparent data-[error=true]:outline-rose-500" />
-              {!field.state.meta.isValid ? <OctagonAlert className="w-4 h-4 stroke-red-500 absolute top-1/2 left-4 -translate-y-1/2" aria-hidden="true" /> : <TypeOutline className="w-4 h-4 stroke-zinc-300 dark:stroke-zinc-600 peer-focus:stroke-black dark:peer-focus:stroke-zinc-400 absolute top-1/2 left-4 -translate-y-1/2" aria-hidden="true" />}
-            </Field>
-          }
+          {field => <TextInput icon="type-outline" type="text" placeholder="Name" name={field.name} onChange={e => field.handleChange( e.target.value )} invalid={field.state.meta.isValid} data-error={field.state.meta.isValid ? false : true} />}
         </form.Field>
         <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]}>
-          {( [ canSubmit, isSubmitting ] ) =>
-            <Button disabled={!canSubmit} type="submit" className="w-full p-4 rounded-xl bg-black dark:bg-white text-white dark:text-black cursor-pointer outline-offset-3 disabled:cursor-default disabled:opacity-70">{isSubmitting ? '•••' : 'Save'}</Button>
-          }
+          {( [ canSubmit, isSubmitting ] ) => <Button type="submit" disabled={!canSubmit}>{isSubmitting ? '•••' : 'Save'}</Button>}
         </form.Subscribe>
       </div>
       <div className="w-full mt-5 text-center absolute top-full">

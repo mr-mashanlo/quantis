@@ -12,7 +12,8 @@ export const useUpdateEmployeeForm = ( employee: Employee ) => {
   const form = useForm( {
     defaultValues: {
       name: employee.name,
-      role: employee.role
+      role: employee.role,
+      archived: employee.archived
     } as UpdateEmployeeDTO,
 
     onSubmit: async ( { value, formApi } ) => {

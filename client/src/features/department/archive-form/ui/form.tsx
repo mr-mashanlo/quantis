@@ -1,9 +1,9 @@
-import { Button } from '@headlessui/react';
 import { useSelector } from '@tanstack/react-form';
 import { type DetailedHTMLProps, type FC, type FormHTMLAttributes, type SubmitEvent } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { type Department } from '@/entities/department';
+import { Button } from '@/shared/ui/button';
 
 import { useUpdateDepartmentForm } from '../model/hook';
 
@@ -26,13 +26,11 @@ export const ArchiveDepartmentForm: FC<Props> = ( { department, className, ...pr
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className={twMerge( 'w-full sm:w-165 relative', className )} {...props}>
+    <form onSubmit={handleFormSubmit} className={twMerge( 'w-full sm:w-90 relative', className )} {...props}>
       <h3 className="mb-5 text-xl text-center font-bold">Archive department</h3>
-      <div className="w-full sm:w-90 mx-auto grid gap-4 sm:gap-5">
+      <div className="grid gap-4 sm:gap-5">
         <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]}>
-          {( [ canSubmit, isSubmitting ] ) =>
-            <Button disabled={!canSubmit} type="submit" className="w-full p-4 rounded-xl bg-black dark:bg-white text-white dark:text-black cursor-pointer outline-offset-3 disabled:cursor-default disabled:opacity-70">{isSubmitting ? '•••' : department.archived ? 'Unarchive' : 'Archive'}</Button>
-          }
+          {( [ canSubmit, isSubmitting ] ) => <Button type="submit" disabled={!canSubmit}>{isSubmitting ? '•••' : department.archived ? 'Unarchive' : 'Archive'}</Button>}
         </form.Subscribe>
       </div>
       <div className="w-full mt-5 text-center absolute top-full">

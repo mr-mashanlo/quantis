@@ -11,7 +11,8 @@ export const useUpdatePatientForm = ( patient: Patient ) => {
 
   const form = useForm( {
     defaultValues: {
-      name: patient.name
+      name: patient.name,
+      archived: patient.archived
     } as UpdatePatientDTO,
 
     onSubmit: async ( { value, formApi } ) => {

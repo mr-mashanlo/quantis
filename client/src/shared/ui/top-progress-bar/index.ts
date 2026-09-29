@@ -1,3 +1,1 @@
-import TopProgressBar from './ui';
-
-export { TopProgressBar };
+export * from './top-progress-bar';

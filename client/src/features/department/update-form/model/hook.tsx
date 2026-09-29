@@ -11,7 +11,8 @@ export const useUpdateDepartmentForm = ( department: Department ) => {
 
   const form = useForm( {
     defaultValues: {
-      name: department.name
+      name: department.name,
+      archived: department.archived
     } as UpdateDepartmentDTO,
 
     onSubmit: async ( { value, formApi } ) => {

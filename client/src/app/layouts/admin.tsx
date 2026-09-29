@@ -32,7 +32,7 @@ export const AdminLayout: FC = () => {
             </Link>
           </nav>
         </header>
-        <section className="p-5 sm:p-10">
+        <section className="p-5 sm:p-10 grow">
           <Outlet />
         </section>
       </main>
