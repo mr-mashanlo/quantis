@@ -3,9 +3,7 @@ import { type DetailedHTMLProps, type FC, type HTMLAttributes, useState } from '
 import { useSearchParams } from 'react-router';
 
 import { type Department, useDepartments } from '@/entities/department';
-import { ArchiveDepartmentForm } from '@/features/department/archive-form';
-import { CreateDepartmentForm } from '@/features/department/create-form';
-import { UpdateDepartmentForm } from '@/features/department/update-form';
+import { ArchiveDepartmentForm, CreateDepartmentForm, UpdateDepartmentForm } from '@/features/department';
 import { SmallButton, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';

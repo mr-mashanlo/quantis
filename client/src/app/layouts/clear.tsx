@@ -8,7 +8,7 @@ export const ClearLayout: FC = () => {
     <>
       <ScrollRestoration />
       <TopProgressBar />
-      <Outlet />;
+      <Outlet />
     </>
   );
 };

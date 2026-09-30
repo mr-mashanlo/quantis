@@ -61,6 +61,8 @@ services:
     container_name: react
     ports:
       - "5173:5173"
+    networks:
+      - prisma-network
     volumes:
       - ./client:/usr/src/app
       - /usr/src/app/node_modules

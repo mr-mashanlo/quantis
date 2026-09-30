@@ -3,9 +3,7 @@ import { type DetailedHTMLProps, type FC, type HTMLAttributes, useState } from '
 import { useSearchParams } from 'react-router';
 
 import { type Employee, useEmployees } from '@/entities/employee';
-import { ArchiveEmployeeForm } from '@/features/employee/archive-form';
-import { CreateEmployeeForm } from '@/features/employee/create-form';
-import { UpdateEmployeeForm } from '@/features/employee/update-form';
+import { ArchiveEmployeeForm, CreateEmployeeForm, UpdateEmployeeForm } from '@/features/employee';
 import { SmallButton, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';

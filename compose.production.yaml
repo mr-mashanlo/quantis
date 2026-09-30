@@ -3,6 +3,8 @@ services:
   db:
     image: postgres:15
     container_name: postgres_production
+    ports:
+      - "127.0.0.1:5432:5432"
     networks:
       - prisma-network
     volumes:
@@ -23,6 +25,8 @@ services:
       context: ./server
       dockerfile: dockerfile.production
     container_name: node_production
+    ports:
+      - "9173:9173"
     networks:
       - prisma-network
     depends_on:
@@ -45,7 +49,6 @@ services:
 
 networks:
   prisma-network:
-    driver: bridge
 
 volumes:
   postgres_data:

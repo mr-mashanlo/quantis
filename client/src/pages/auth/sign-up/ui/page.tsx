@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { SignUpForm } from '@/features/auth/sign-up-form';
+import { SignUpForm } from '@/features/auth';
 
 export const SignUpPage: FC = () => {
   return (

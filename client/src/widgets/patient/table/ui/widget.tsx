@@ -3,9 +3,7 @@ import { type DetailedHTMLProps, type FC, type HTMLAttributes, useState } from '
 import { useSearchParams } from 'react-router';
 
 import { type Patient, usePatients } from '@/entities/patient';
-import { ArchivePatientForm } from '@/features/patient/archive-form';
-import { CreatePatientForm } from '@/features/patient/create-form';
-import { UpdatePatientForm } from '@/features/patient/update-form';
+import { ArchivePatientForm, CreatePatientForm, UpdatePatientForm } from '@/features/patient';
 import { SmallButton, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';

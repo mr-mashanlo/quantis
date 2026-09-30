@@ -3,8 +3,7 @@ import { type DetailedHTMLProps, type FC, type HTMLAttributes, useState } from '
 import { Link, useSearchParams } from 'react-router';
 
 import { type Operation, useOperations } from '@/entities/operation';
-import { DepartmentToDepartmentForm, DepartmentToPatientForm } from '@/features/operation/create-form';
-import { UpdateOperationForm } from '@/features/operation/update-form';
+import { DepartmentToDepartmentForm, DepartmentToPatientForm, UpdateOperationForm } from '@/features/operation';
 import { SmallButton, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';

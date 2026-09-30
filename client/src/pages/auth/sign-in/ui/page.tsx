@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { SignInForm } from '@/features/auth/sign-in-form';
+import { SignInForm } from '@/features/auth';
 
 export const SignInPage: FC = () => {
   return (

@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from 'react-router';
 
 import { useOperation } from '@/entities/operation';
 import { type Transaction, useTransactions } from '@/entities/transaction';
-import { CreateTransactionForm } from '@/features/transaction/create-form';
+import { CreateTransactionForm } from '@/features/transaction';
 import { SmallButton, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';
