@@ -14,10 +14,6 @@ export class TransactionRepository {
     return await tx.transaction.createMany( { data } );
   };
 
-  async delete( where, tx = this.#prisma ) {
-    return await tx.transaction.delete( { where } );
-  };
-
   async find( { filters = {}, sort = { 'id': 'desc' }, pagination = { skip: 0, limit: 10 } }, tx = this.#prisma ) {
     return await tx.transaction.findMany( {
       where: filters,
@@ -32,10 +28,6 @@ export class TransactionRepository {
 
   async findById( id, tx = this.#prisma ) {
     return await tx.transaction.findUnique( { where: { id } } );
-  };
-
-  async update( where, data, tx = this.#prisma ) {
-    return await tx.transaction.update( { where, data } );
   };
 
 }

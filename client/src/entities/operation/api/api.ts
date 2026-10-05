@@ -8,10 +8,6 @@ class OperationService {
     return kyInstance.post( 'operations', { json: data } ).json();
   };
 
-  deleteOperation = ( id: string ): Promise<Operation> => {
-    return kyInstance.delete( `operations/${id}` ).json();
-  };
-
   getOperations = ( searchParams?: Record<string, string> ): Promise<PaginatedOperation> => {
     return kyInstance.get( 'operations', { searchParams } ).json();
   };

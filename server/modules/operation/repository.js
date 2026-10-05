@@ -14,10 +14,6 @@ export class OperationRepository {
     return await tx.operation.create( { data } );
   };
 
-  async delete( where, tx = this.#prisma ) {
-    return await tx.operation.delete( { where } );
-  };
-
   async find( { filters = {}, sort = { 'id': 'desc' }, pagination = { skip: 0, limit: 10 } }, tx = this.#prisma ) {
     return await tx.operation.findMany( {
       where: filters,

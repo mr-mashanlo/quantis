@@ -2,24 +2,10 @@ import { FilteringSchema, PaginationSchema, SortingSchema } from './schema.js';
 
 export class TransactionService {
 
-  #prisma;
   #transactionRepository;
 
-  constructor( prisma, transactionRepository ) {
-    this.#prisma = prisma;
+  constructor( transactionRepository ) {
     this.#transactionRepository = transactionRepository;
-  };
-
-  async createTransaction( body ) {
-    return await this.#prisma.$transaction( async tx => {
-      const credit = await this.#transactionRepository.create( { ...body, type: 'CREDIT' }, tx ); // FROM
-      const debit = await this.#transactionRepository.create( { ...body, type: 'DEBIT' }, tx ); // TO
-      return { credit, debit };
-    } );
-  };
-
-  async deleteTransaction( query ) {
-    await this.#transactionRepository.delete( query );
   };
 
   async getTransactions( query = {} ) {
@@ -33,14 +19,6 @@ export class TransactionService {
     } );
     const total = await this.#transactionRepository.count( filters );
     return { data, total, ...pagination };
-  };
-
-  async getTransactionById( id ) {
-    return await this.#transactionRepository.findById( id );
-  };
-
-  async updateTransactionById( id, body ) {
-    return await this.#transactionRepository.update( { id }, body );
   };
 
 };
