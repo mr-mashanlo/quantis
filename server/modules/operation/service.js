@@ -2,14 +2,28 @@ import { FilteringSchema, PaginationSchema, SortingSchema } from './schema.js';
 
 export class OperationService {
 
+  #prisma;
   #operationRepository;
+  #transactionRepository;
 
-  constructor( operationRepository ) {
+  constructor( prisma, operationRepository, transactionRepository ) {
+    this.#prisma = prisma;
     this.#operationRepository = operationRepository;
+    this.#transactionRepository = transactionRepository;
   };
 
-  async createOperation( body ) {
-    return await this.#operationRepository.create( body );
+  async createOperation( { transactions, createdById, ...body } ) {
+    return await this.#prisma.$transaction( async tx => {
+      const createdAt = new Date();
+      const operation = await this.#operationRepository.create( { createdAt, createdById, ...body }, tx );
+
+      const credit = transactions.map( transaction => ( { ...transaction, type: 'CREDIT', operationId: operation.id, createdAt, createdById } ) );
+      const debit = transactions.map( transaction => ( { ...transaction, type: 'DEBIT', operationId: operation.id, createdAt, createdById } ) );
+
+      await this.#transactionRepository.create( credit, tx );
+      await this.#transactionRepository.create( debit, tx );
+      return operation;
+    } );
   };
 
   async getOperations( query = {} ) {

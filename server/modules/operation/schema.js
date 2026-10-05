@@ -1,27 +1,21 @@
 import { z } from 'zod';
 
-const BaseSchema = z.object( {
+export const CreateOperationSchema = z.object( {
   status: z.enum( [ 'DRAFT', 'COMPLETED', 'CANCELLED' ], 'Status has invalid value' ),
-  fromDepartmentId: z.string()
+  fromDepartmentId: z.string(),
+  toDepartmentId: z.string().transform( v => v === '' ? null : v ),
+  toPatientId: z.string().transform( v => v === '' ? null : v ),
+  transactions: z.array( z.object( {
+    medicationId: z.string(),
+    amount: z.number().positive()
+  } ) )
 } );
-
-export const CreateOperationSchema = z.union( [
-  BaseSchema.extend( {
-    toDepartmentId: z.string()
-  } ),
-  BaseSchema.extend( {
-    toPatientId: z.string()
-  } )
-] );
 
 export const UpdateOperationSchema = z.object( {
   status: z.enum( [ 'DRAFT', 'COMPLETED', 'CANCELLED' ], 'Status has invalid value' )
 } );
 
-export const FilteringSchema = BaseSchema.extend( {
-  toDepartmentId: z.string(),
-  toPatientId: z.string()
-} ).partial();
+export const FilteringSchema = CreateOperationSchema.partial();
 
 export const SortingSchema = z.object( {
   order: z.enum( [ 'asc', 'desc' ] ).default( 'desc' ),
