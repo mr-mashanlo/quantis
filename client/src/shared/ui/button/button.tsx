@@ -1,11 +1,14 @@
 import { Button as HeadlessButton, type ButtonProps } from '@headlessui/react';
 import { type FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-type Props = ButtonProps;
+interface Props extends ButtonProps {
+  scale?: 'sm' | 'base'
+};
 
-export const Button: FC<Props> = ( { children, ...props } ) => {
+export const Button: FC<Props> = ( { scale = 'base', children, className, ...props } ) => {
   return (
-    <HeadlessButton className="w-full p-4 rounded-xl bg-black dark:bg-white text-white dark:text-black cursor-pointer outline-offset-3 disabled:cursor-default disabled:opacity-70" {...props}>
+    <HeadlessButton className={twMerge( 'w-full bg-black dark:bg-white text-white dark:text-black cursor-pointer outline-offset-3 disabled:cursor-default disabled:opacity-70', scale === 'base' ? 'p-4 rounded-xl' : 'h-7.5 px-3 py-1 rounded-md', String( className ) )} {...props}>
       {children}
     </HeadlessButton>
   );

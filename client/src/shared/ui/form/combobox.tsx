@@ -2,14 +2,16 @@ import { Combobox as HeadlessCombobox, ComboboxOption, ComboboxOptions, type Com
 import { ChevronDown, OctagonAlert } from 'lucide-react';
 import { DynamicIcon, type IconName } from 'lucide-react/dynamic';
 import { type ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface Props<T, M extends boolean> extends ComboboxProps<T, M> {
   icon: IconName,
   input: ReactNode,
-  options: Array<{id: string, key: string, value: string}>
+  options: Array<{id: string, key: string, value: string}>,
+  scale?: 'sm' | 'base'
 }
 
-export const Combobox = <T, M extends boolean>( { icon, input, options, invalid, ...props }: Props<T, M> ) => {
+export const Combobox = <T, M extends boolean>( { icon, input, options, scale = 'base', invalid = true, ...props }: Props<T, M> ) => {
   return (
     <Field className="block relative">
       <HeadlessCombobox {...props}>
@@ -18,8 +20,8 @@ export const Combobox = <T, M extends boolean>( { icon, input, options, invalid,
           {options.map( option => <ComboboxOption key={option.id} value={option} className="w-full px-3 py-2 flex items-center gap-2 rounded-md cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-950">{option.value}</ComboboxOption> )}
         </ComboboxOptions>
       </HeadlessCombobox>
-      {!invalid ? <OctagonAlert className="w-4 h-4 stroke-red-500 absolute top-1/2 left-4 -translate-y-1/2" aria-hidden="true" /> : <DynamicIcon name={icon} className="w-4 h-4 stroke-zinc-300 dark:stroke-zinc-600 peer-focus:stroke-black dark:peer-focus:stroke-zinc-400 absolute top-1/2 left-4 -translate-y-1/2" aria-hidden="true" />}
-      <ChevronDown className="w-4 h-4 stroke-zinc-300 absolute top-1/2 right-4 -translate-y-1/2" />
+      {!invalid ? <OctagonAlert className={twMerge( 'stroke-red-500 absolute top-1/2 -translate-y-1/2', scale === 'base' ? 'w-4 h-4 left-4' : 'w-3 h-3 left-2' )} aria-hidden="true" /> : <DynamicIcon name={icon} className={twMerge( 'stroke-zinc-300 dark:stroke-zinc-600 peer-focus:stroke-black dark:peer-focus:stroke-zinc-400 absolute top-1/2 -translate-y-1/2', scale === 'base' ? 'w-4 h-4 left-4' : 'w-3 h-3 left-2' )} aria-hidden="true" />}
+      <ChevronDown className={twMerge( 'stroke-zinc-300 absolute top-1/2 -translate-y-1/2', scale === 'base' ? 'w-4 h-4 right-4' : 'w-3 h-3 right-2' )} aria-hidden="true" />
     </Field>
   );
 };

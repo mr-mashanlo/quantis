@@ -21,10 +21,9 @@ interface Props<T> extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTM
   columns: Array<Columns<T>>
   header?: ReactNode,
   footer?: ReactNode
-  rowAction?: ( row: T ) => ReactNode
 }
 
-export const Table = <T, >( { data, columns, header, footer, rowAction, className, ...props }: Props<T> ) => {
+export const Table = <T extends { action?: string }, >( { data, columns, header, footer, className, ...props }: Props<T> ) => {
   const [ searchParams, setSearchParams ] = useSearchParams();
   const params = new URLSearchParams( searchParams );
 
@@ -47,24 +46,25 @@ export const Table = <T, >( { data, columns, header, footer, rowAction, classNam
       <div className="overflow-auto">
         <table className="w-full min-w-200 text-left table-fixed">
           <thead>
-            <tr>
-              <th className="w-13.5 h-13.5 p-3"></th>
+            <tr className="h-13.5">
               {columns.map( column => (
-                <th key={column.key} className="p-3">
-                  <button onClick={() => setParams( { sort: column.key } )} className="inline-flex items-center gap-1 cursor-pointer">
-                    <span>{column.value}</span>
-                    <ChevronsUpDown className="w-3 h-3" />
-                  </button>
+                <th key={column.key} className={twMerge( column.key === 'action' ? 'w-13.5 h-13.5 p-3' : 'p-3' )}>
+                  {
+                    column.key === 'action' ? '' :
+                      <button onClick={() => setParams( { sort: column.key } )} className="inline-flex items-center gap-1 cursor-pointer">
+                        <span>{column.value}</span>
+                        <ChevronsUpDown className="w-3 h-3" />
+                      </button>
+                  }
                 </th>
               ) )}
             </tr>
           </thead>
           <tbody>
             {data.data.map( ( row, index ) => (
-              <tr key={index} className="border-t border-zinc-200 dark:border-zinc-800/50">
-                <td className="w-13.5 h-13.5 p-3">{rowAction?.( row )}</td>
+              <tr key={index} className="h-13.5 border-t border-zinc-200 dark:border-zinc-800/50">
                 {columns.map( column => (
-                  <td key={column.key} className="p-3">
+                  <td key={column.key} className={twMerge( column.key === 'action' ? 'w-13.5 p-3' : 'p-3' )}>
                     {column.cell ? column.cell( row ) : typeof row[column.key] === 'boolean' ? String( row[column.key] ).toUpperCase() : String( row[column.key] )}
                   </td>
                 ) )}
