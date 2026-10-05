@@ -20,6 +20,10 @@ const OperationSchema = z.object( {
     name: z.string()
   } ),
   toPatientId: z.string().optional(),
+  transactions: z.array( z.object( {
+    medicationId: z.string(),
+    amount: z.number()
+  } ) ),
   createdAt: z.string(),
   createdById: z.string()
 } );
@@ -27,7 +31,11 @@ const OperationSchema = z.object( {
 export const CreateOperationFormSchema = z.object( {
   fromDepartment: z.object( { id: z.string() } ),
   toDepartment: z.object( { id: z.string() } ).optional(),
-  toPatient: z.object( { id: z.string() } ).optional()
+  toPatient: z.object( { id: z.string() } ).optional(),
+  transactions: z.array( z.object( {
+    medication: z.object( { id: z.string() } ),
+    amount: z.string()
+  } ) )
 } );
 
 export const CreateOperationSchema = OperationSchema.omit( { id: true, fromDepartment: true, toDepartment: true, toPatient: true, createdAt: true, createdById: true } );
