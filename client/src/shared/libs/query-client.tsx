@@ -5,6 +5,9 @@ const queryCache = new QueryCache( {
   onError: async error => {
     if ( error instanceof HTTPError ) {
       const status = error.response.status;
+      if ( status === 401 ) {
+        window.location.replace( '/signin' );
+      };
       if ( status === 403 ) {
         window.location.replace( '/no-access' );
       }
@@ -16,7 +19,9 @@ const mutationCache = new MutationCache( {
   onError: async error => {
     if ( error instanceof HTTPError ) {
       const status = error.response.status;
-      console.log( status );
+      if ( status === 401 ) {
+        window.location.replace( '/signin' );
+      };
       if ( status === 403 ) {
         window.location.replace( '/no-access' );
       }
