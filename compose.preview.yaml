@@ -1,0 +1,67 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - prisma-network
+    volumes:
+      - postgres:/var/lib/postgresql
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  studio:
+    image: node:26-alpine
+    container_name: studio
+    working_dir: /usr/src/app
+    command: npx prisma studio --port 5555 --browser none
+    ports:
+      - "5555:5555"
+    networks:
+      - prisma-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile.production
+    container_name: node
+    ports:
+      - "9173:9173"
+    networks:
+      - prisma-network
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+      dockerfile: dockerfile.production
+    container_name: react
+    networks:
+      - prisma-network
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+networks:
+  prisma-network:
+
+volumes:
+  postgres:

@@ -24,7 +24,7 @@ services:
     build:
       context: ./server
       dockerfile: dockerfile.production
-    container_name: node_production
+    container_name: node
     ports:
       - "9173:9173"
     networks:
@@ -38,7 +38,7 @@ services:
     build:
       context: ./client
       dockerfile: dockerfile.production
-    container_name: react_production
+    container_name: react
     networks:
       - prisma-network
     ports:
@@ -51,4 +51,4 @@ networks:
   prisma-network:
 
 volumes:
-  postgres_data:
+  postgres:
