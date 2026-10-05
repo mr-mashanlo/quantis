@@ -40,8 +40,8 @@ export const CreateEmployeeForm: FC<Props> = ( { className, ...props } ) => {
         <form.Field name="role" validators={{ onChange: CreateAuthSchema.shape.role }}>
           {field => <Listbox icon="user" value={field.state.value} onChange={e => field.handleChange( e as CreateAuthDTO['role'] )} placeholder={field.state.value} options={[ { key: 'DOCTOR', value: 'DOCTOR' }, { key: 'PHARMACIST', value: 'PHARMACIST' }, { key: 'NURSE', value: 'NURSE' } ]} />}
         </form.Field>
-        <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]}>
-          {( [ canSubmit, isSubmitting ] ) => <Button type="submit" disabled={!canSubmit}>{isSubmitting ? '•••' : 'Save'}</Button>}
+        <form.Subscribe>
+          {state => <Button type="submit" disabled={!state.canSubmit}>{state.isSubmitting ? '•••' : 'Save'}</Button>}
         </form.Subscribe>
       </div>
       <div className="w-full mt-5 text-center absolute top-full">

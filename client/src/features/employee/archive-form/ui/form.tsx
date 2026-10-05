@@ -29,8 +29,8 @@ export const ArchiveEmployeeForm: FC<Props> = ( { employee, className, ...props 
     <form onSubmit={handleFormSubmit} className={twMerge( 'w-full sm:w-90 relative', className )} {...props}>
       <h3 className="mb-5 text-xl text-center font-bold">Archive employee</h3>
       <div className="grid gap-4 sm:gap-5">
-        <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]}>
-          {( [ canSubmit, isSubmitting ] ) => <Button type="submit" disabled={!canSubmit}>{isSubmitting ? '•••' : employee.archived ? 'Unarchive' : 'Archive'}</Button>}
+        <form.Subscribe>
+          {state => <Button type="submit" disabled={!state.canSubmit}>{state.isSubmitting ? '•••' : employee.archived ? 'Unarchive' : 'Archive'}</Button>}
         </form.Subscribe>
       </div>
       <div className="w-full mt-5 text-center absolute top-full">

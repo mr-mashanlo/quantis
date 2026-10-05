@@ -34,8 +34,8 @@ export const CreateMedicationForm: FC<Props> = ( { className, ...props } ) => {
         <form.Field name="unit" validators={{ onChange: CreateMedicationSchema.shape.unit }}>
           {field => <TextInput icon="type-outline" type="number" placeholder="Unit" name={field.name} onChange={e => field.handleChange( e.target.value )} invalid={field.state.meta.isValid} data-error={field.state.meta.isValid ? false : true} />}
         </form.Field>
-        <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]}>
-          {( [ canSubmit, isSubmitting ] ) => <Button type="submit" disabled={!canSubmit}>{isSubmitting ? '•••' : 'Save'}</Button>}
+        <form.Subscribe>
+          {state => <Button type="submit" disabled={!state.canSubmit}>{state.isSubmitting ? '•••' : 'Save'}</Button>}
         </form.Subscribe>
       </div>
       <div className="w-full mt-5 text-center absolute top-full">
