@@ -4,12 +4,13 @@ import { useSearchParams } from 'react-router';
 
 import { type Department, useDepartments } from '@/entities/department';
 import { ArchiveDepartmentForm, CreateDepartmentForm, UpdateDepartmentForm } from '@/features/department';
-import { SmallButton, SquareButton } from '@/shared/ui/button';
+import { Button, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';
 import { Header, Pagination, SearchForm, Table, TableSkeleton } from '@/shared/ui/table';
 
-type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+interface ExtendedDepartment extends Department { action?: string };
 
 const HeaderModal = () => {
   const [ isCreateModalOpen, setIsCreateModalOpen ] = useState( false );
@@ -26,21 +27,21 @@ const HeaderModal = () => {
   );
 };
 
-const ItemMenu = ( { department }: { department: Department } ) => {
+const RowMenu = ( { row }: { row: Department } ) => {
   const [ isEditModalOpen, setIsEditModalOpen ] = useState( false );
   const [ isArchiveModalOpen, setIsArchiveModalOpen ] = useState( false );
 
   return (
     <>
       <Menu buttons={[
-        <SmallButton onClick={() => setIsEditModalOpen( true )}>Edit</SmallButton>,
-        <SmallButton onClick={() => setIsArchiveModalOpen( true )}>{department.archived ? 'Unarchive' : 'Archive'}</SmallButton>
+        <Button scale="sm" theme="sm" onClick={() => setIsEditModalOpen( true )}>Edit</Button>,
+        <Button scale="sm" theme="sm" onClick={() => setIsArchiveModalOpen( true )}>{row.archived ? 'Unarchive' : 'Archive'}</Button>
       ]} />
       <Dialog open={isEditModalOpen} onClose={() => setIsEditModalOpen( false )}>
-        <UpdateDepartmentForm department={department} />
+        <UpdateDepartmentForm department={row} />
       </Dialog>
       <Dialog open={isArchiveModalOpen} onClose={() => setIsArchiveModalOpen( false )}>
-        <ArchiveDepartmentForm department={department} />
+        <ArchiveDepartmentForm department={row} />
       </Dialog>
     </>
   );
@@ -55,12 +56,11 @@ export const DepartmentTable: FC<Props> = ( props ) => {
   if ( departments.error ) return <TableSkeleton />;
 
   return (
-    <Table<Department>
+    <Table<ExtendedDepartment>
       data={departments.data}
-      columns={[ { key: 'name', value: 'Name' }, { key: 'archived', value: 'Archived' } ]}
-      header={<Header title="Departments" button={<HeaderModal />} action={<SearchForm />} />}
+      columns={[ { key: 'action', value: 'Action', cell: row => <RowMenu row={row} /> }, { key: 'name', value: 'Name' }, { key: 'archived', value: 'Archived' } ]}
+      header={<Header leftAction={<HeaderModal />} rightAction={<SearchForm />}>Departments</Header>}
       footer={<Pagination limit={departments.data.limit} page={departments.data.page} total={departments.data.total} />}
-      rowAction={row => <ItemMenu department={row} />}
       {...props}
     />
   );

@@ -4,12 +4,13 @@ import { useSearchParams } from 'react-router';
 
 import { type Employee, useEmployees } from '@/entities/employee';
 import { ArchiveEmployeeForm, CreateEmployeeForm, UpdateEmployeeForm } from '@/features/employee';
-import { SmallButton, SquareButton } from '@/shared/ui/button';
+import { Button, SquareButton } from '@/shared/ui/button';
 import { Dialog } from '@/shared/ui/dialog';
 import { Menu } from '@/shared/ui/menu';
 import { Header, Pagination, SearchForm, Table, TableSkeleton } from '@/shared/ui/table';
 
-type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+interface ExtendedEmployee extends Employee { action?: string };
 
 const HeaderModal = () => {
   const [ isCreateModalOpen, setIsCreateModalOpen ] = useState( false );
@@ -26,21 +27,21 @@ const HeaderModal = () => {
   );
 };
 
-const ItemMenu = ( { employee }: { employee: Employee } ) => {
+const RowMenu = ( { row }: { row: Employee } ) => {
   const [ isEditModalOpen, setIsEditModalOpen ] = useState( false );
   const [ isArchiveModalOpen, setIsArchiveModalOpen ] = useState( false );
 
   return (
     <>
       <Menu buttons={[
-        <SmallButton onClick={() => setIsEditModalOpen( true )}>Edit</SmallButton>,
-        <SmallButton onClick={() => setIsArchiveModalOpen( true )}>{employee.archived ? 'Unarchive' : 'Archive'}</SmallButton>
+        <Button scale="sm" theme="sm" onClick={() => setIsEditModalOpen( true )}>Edit</Button>,
+        <Button scale="sm" theme="sm" onClick={() => setIsArchiveModalOpen( true )}>{row.archived ? 'Unarchive' : 'Archive'}</Button>
       ]} />
       <Dialog open={isEditModalOpen} onClose={() => setIsEditModalOpen( false )}>
-        <UpdateEmployeeForm employee={employee} />
+        <UpdateEmployeeForm employee={row} />
       </Dialog>
       <Dialog open={isArchiveModalOpen} onClose={() => setIsArchiveModalOpen( false )}>
-        <ArchiveEmployeeForm employee={employee} />
+        <ArchiveEmployeeForm employee={row} />
       </Dialog>
     </>
   );
@@ -55,12 +56,11 @@ export const EmployeeTable: FC<Props> = ( props ) => {
   if ( employees.error ) return <TableSkeleton />;
 
   return (
-    <Table<Employee>
+    <Table<ExtendedEmployee>
       data={employees.data}
-      columns={[ { key: 'name', value: 'Name' }, { key: 'role', value: 'Role' }, { key: 'archived', value: 'Archived' } ]}
-      header={<Header title="Employees" button={<HeaderModal />} action={<SearchForm />} />}
+      columns={[ { key: 'action', value: 'Action', cell: row => <RowMenu row={row} /> }, { key: 'name', value: 'Name' }, { key: 'role', value: 'Role' }, { key: 'archived', value: 'Archived' } ]}
+      header={<Header leftAction={<HeaderModal />} rightAction={<SearchForm />}>Employees</Header>}
       footer={<Pagination limit={employees.data.limit} page={employees.data.page} total={employees.data.total} />}
-      rowAction={row => <ItemMenu employee={row} />}
       {...props}
     />
   );
