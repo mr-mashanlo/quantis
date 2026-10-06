@@ -58,7 +58,7 @@ export const MedicationTable: FC<Props> = ( props ) => {
   return (
     <Table<ExtendedMedication>
       data={medications.data}
-      columns={[ { key: 'action', value: 'Action', cell: row => <RowMenu row={row} /> }, { key: 'name', value: 'Name' }, { key: 'archived', value: 'Archived' } ]}
+      columns={[ { key: 'action', value: 'Action', cell: row => <RowMenu row={row} /> }, { key: 'name', value: 'Name' }, { key: 'unit', value: 'Unit' }, { key: 'archived', value: 'Archived' } ]}
       header={<Header leftAction={<HeaderModal />} rightAction={<SearchForm />}>Medication</Header>}
       footer={<Pagination limit={medications.data.limit} page={medications.data.page} total={medications.data.total} />}
       {...props}

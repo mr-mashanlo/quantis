@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { useDepartments } from '@/entities/department';
 import { useMedications } from '@/entities/medication';
+import { CreateOperationFormSchema } from '@/entities/operation';
 import { usePatients } from '@/entities/patient';
 import { Button, SquareButton } from '@/shared/ui/button';
 import { Combobox, ComboboxInput, TextInput } from '@/shared/ui/form';
@@ -50,21 +51,21 @@ export const CreateOperationForm: FC<Props> = ( { ...props } ) => {
 
   const FromDepartmentInput =
     <div className="w-60 mx-4">
-      <form.Field name="fromDepartment">
+      <form.Field name="fromDepartment" validators={{ onChange: CreateOperationFormSchema.shape.fromDepartment }}>
         {field => <Combobox<{ id: string }, false> scale="sm" icon="hospital" options={mapedDepartments || []} value={field.state.value} onChange={e => field.handleChange( e || { id: '' } )} onClose={() => setDepartmentQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Department" displayValue={data => data?.value} onChange={e => setDepartmentQuery( e.target.value )} />} />}
       </form.Field>
     </div>;
 
   const ToDepartmentInput =
     <div className="w-60 mx-4">
-      <form.Field name="toDepartment">
+      <form.Field name="toDepartment" validators={{ onChange: CreateOperationFormSchema.shape.toDepartment }}>
         {field => <Combobox<{ id: string }, false> scale="sm" icon="hospital" options={mapedDepartments || []} value={field.state.value} onChange={e => {field.handleChange( e || { id: '' } ); form.setFieldValue( 'toPatient', { id: '' } );}} onClose={() => setDepartmentQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Department" displayValue={data => data?.value} onChange={e => setDepartmentQuery( e.target.value )} />} />}
       </form.Field>
     </div>;
 
   const ToPatientInput =
     <div className="w-60 mx-4">
-      <form.Field name="toPatient">
+      <form.Field name="toPatient" validators={{ onChange: CreateOperationFormSchema.shape.toPatient }}>
         {field => <Combobox<{ id: string }, false> scale="sm" icon="cat" options={mapedPatients || []} value={field.state.value} onChange={e => {field.handleChange( e || { id: '' } ); form.setFieldValue( 'toDepartment', { id: '' } );}} onClose={() => setPatientQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Patient" displayValue={data => data?.value} onChange={e => setPatientQuery( e.target.value )} />} />}
       </form.Field>
     </div>;
@@ -88,7 +89,7 @@ export const CreateOperationForm: FC<Props> = ( { ...props } ) => {
                 </th>
               </tr>
             </thead>
-            <form.Field name="transactions">
+            <form.Field name="transactions" validators={{ onChange: CreateOperationFormSchema.shape.transactions }}>
               {transactionField => (
                 <tbody>
                   {transactionField.state.value.map( ( _, index ) => (

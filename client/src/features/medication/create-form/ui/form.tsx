@@ -32,7 +32,7 @@ export const CreateMedicationForm: FC<Props> = ( { className, ...props } ) => {
           {field => <TextInput icon="type-outline" type="text" placeholder="Name" name={field.name} onChange={e => field.handleChange( e.target.value )} invalid={field.state.meta.isValid} data-error={field.state.meta.isValid ? false : true} />}
         </form.Field>
         <form.Field name="unit" validators={{ onChange: CreateMedicationSchema.shape.unit }}>
-          {field => <TextInput icon="type-outline" type="number" placeholder="Unit" name={field.name} onChange={e => field.handleChange( e.target.value )} invalid={field.state.meta.isValid} data-error={field.state.meta.isValid ? false : true} />}
+          {field => <TextInput icon="package-2" type="text" placeholder="Unit" name={field.name} onChange={e => field.handleChange( e.target.value )} invalid={field.state.meta.isValid} data-error={field.state.meta.isValid ? false : true} />}
         </form.Field>
         <form.Subscribe>
           {state => <Button type="submit" disabled={!state.canSubmit}>{state.isSubmitting ? '•••' : 'Save'}</Button>}

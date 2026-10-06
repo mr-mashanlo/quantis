@@ -29,13 +29,13 @@ const OperationSchema = z.object( {
 } );
 
 export const CreateOperationFormSchema = z.object( {
-  fromDepartment: z.object( { id: z.string() } ),
-  toDepartment: z.object( { id: z.string() } ).optional(),
-  toPatient: z.object( { id: z.string() } ).optional(),
+  fromDepartment: z.object( { id: z.string().min( 1 ) } ),
+  toDepartment: z.object( { id: z.string() } ),
+  toPatient: z.object( { id: z.string() } ),
   transactions: z.array( z.object( {
     medication: z.object( { id: z.string() } ),
     amount: z.string()
-  } ) )
+  } ) ).min( 1 )
 } );
 
 export const CreateOperationSchema = OperationSchema.omit( { id: true, fromDepartment: true, toDepartment: true, toPatient: true, createdAt: true, createdById: true } );
