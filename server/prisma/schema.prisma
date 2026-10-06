@@ -59,7 +59,6 @@ model Patient {
   createdById String
   archived Boolean @default(false)
   operations Operation[]
-  @@index([createdById])
 }
 
 model Department {
@@ -71,7 +70,7 @@ model Department {
   archived Boolean @default(false)
   outgoingOperations Operation[] @relation("FromDepartment")
   incomingOperations Operation[] @relation("ToDepartment")
-  @@index([createdById])
+  balance Balance[]
 }
 
 model Medication {
@@ -83,7 +82,7 @@ model Medication {
   createdById String
   archived Boolean @default(false)
   transactions Transaction[]
-  @@index([createdById])
+  balance Balance[]
 }
 
 model Operation {
@@ -99,7 +98,7 @@ model Operation {
   createdBy Employee @relation(fields: [createdById], references: [id])
   createdById String
   transactions Transaction[]
-  @@index([createdById])
+  balance Balance[]
 }
 
 model Transaction {
@@ -114,5 +113,16 @@ model Transaction {
   createdBy Employee @relation(fields: [createdById], references: [id])
   createdById String
   @@index([operationId])
-  @@index([medicationId])
+}
+
+model Balance {
+  id String @id @default(cuid())
+  operation Operation @relation(fields: [operationId], references: [id])
+  operationId String
+  department Department @relation(fields: [departmentId], references: [id])
+  departmentId String
+  medication Medication @relation(fields: [medicationId], references: [id])
+  medicationId String
+  amount Int
+  @@unique([departmentId, medicationId])
 }

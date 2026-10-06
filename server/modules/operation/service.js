@@ -5,11 +5,13 @@ export class OperationService {
   #prisma;
   #operationRepository;
   #transactionRepository;
+  #balanceRepository;
 
-  constructor( prisma, operationRepository, transactionRepository ) {
+  constructor( prisma, operationRepository, transactionRepository, balanceRepository ) {
     this.#prisma = prisma;
     this.#operationRepository = operationRepository;
     this.#transactionRepository = transactionRepository;
+    this.#balanceRepository = balanceRepository;
   };
 
   async createOperation( { transactions, createdById, ...body } ) {
@@ -22,6 +24,23 @@ export class OperationService {
 
       await this.#transactionRepository.create( credit, tx );
       await this.#transactionRepository.create( debit, tx );
+
+      const fromValues = transactions.map( transaction => ( {
+        operationId: operation.id,
+        departmentId: body.fromDepartmentId,
+        medicationId: transaction.medicationId,
+        amount: -transaction.amount
+      } ) );
+
+      const toValues = transactions.map( transaction => ( {
+        operationId: operation.id,
+        departmentId: body.toDepartmentId,
+        medicationId: transaction.medicationId,
+        amount: transaction.amount
+      } ) );
+
+      await this.#balanceRepository.create( fromValues, tx );
+      body.toDepartmentId ? await this.#balanceRepository.create( toValues, tx ) : null;
       return operation;
     } );
   };

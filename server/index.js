@@ -8,6 +8,7 @@ import { slowDown } from 'express-slow-down';
 
 import { errorHandler } from './middlewares/error-handler.js';
 import { authRouter } from './modules/auth/router.js';
+import { balanceRouter } from './modules/balance/router.js';
 import { departmentRouter } from './modules/department/router.js';
 import { employeeRouter } from './modules/employee/router.js';
 import { medicationRouter } from './modules/medication/router.js';
@@ -43,6 +44,7 @@ app.use( '/api', departmentRouter );
 app.use( '/api', medicationRouter );
 app.use( '/api', operationRouter );
 app.use( '/api', transactionRouter );
+app.use( '/api', balanceRouter );
 
 app.use( errorHandler );
 
