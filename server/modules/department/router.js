@@ -9,8 +9,8 @@ import { CreateDepartmentSchema, UpdateDepartmentSchema } from './schema.js';
 const departmentRouter = Router();
 
 departmentRouter.post( '/departments', isAuth, checkRoles( [ 'ADMIN', 'DOCTOR' ] ), validate( CreateDepartmentSchema ), ( req, res, next ) => departmentController.createDepartment( req, res, next ) );
-departmentRouter.get( '/departments', isAuth, checkRoles( [ 'ADMIN', 'DOCTOR' ] ), ( req, res, next ) => departmentController.getDepartments( req, res, next ) );
-departmentRouter.get( '/departments/:id', isAuth, checkRoles( [ 'ADMIN', 'DOCTOR' ] ), ( req, res, next ) => departmentController.getDepartmentById( req, res, next ) );
+departmentRouter.get( '/departments', isAuth, ( req, res, next ) => departmentController.getDepartments( req, res, next ) );
+departmentRouter.get( '/departments/:id', isAuth, ( req, res, next ) => departmentController.getDepartmentById( req, res, next ) );
 departmentRouter.put( '/departments/:id', isAuth, checkRoles( [ 'ADMIN', 'DOCTOR' ] ), validate( UpdateDepartmentSchema ), ( req, res, next ) => departmentController.updateDepartmentById( req, res, next ) );
 
 export { departmentRouter };
