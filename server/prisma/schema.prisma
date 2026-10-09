@@ -20,7 +20,6 @@ enum Type {
 }
 
 enum Status {
-  DRAFT
   COMPLETED
   CANCELLED
 }
@@ -87,7 +86,7 @@ model Medication {
 
 model Operation {
   id String @id @default(cuid())
-  status Status @default(DRAFT)
+  status Status @default(COMPLETED)
   fromDepartment Department @relation("FromDepartment", fields: [fromDepartmentId], references: [id])
   fromDepartmentId String
   toDepartment Department? @relation("ToDepartment", fields: [toDepartmentId], references: [id])

@@ -11,7 +11,7 @@ export class TransactionRepository {
   };
 
   async create( data, tx = this.#prisma ) {
-    return await tx.transaction.createMany( { data } );
+    return await tx.transaction.createManyAndReturn( { data } );
   };
 
   async find( { filters = {}, sort = { 'id': 'desc' }, pagination = { skip: 0, limit: 10 } }, tx = this.#prisma ) {

@@ -14,33 +14,34 @@ export class OperationService {
     this.#balanceRepository = balanceRepository;
   };
 
-  async createOperation( { transactions, createdById, ...body } ) {
+  async createOperation( { transactions: transactionsDto, createdById, ...body } ) {
     return await this.#prisma.$transaction( async tx => {
       const createdAt = new Date();
       const operation = await this.#operationRepository.create( { createdAt, createdById, ...body }, tx );
 
-      const credit = transactions.map( transaction => ( { ...transaction, type: 'CREDIT', operationId: operation.id, createdAt, createdById } ) );
-      const debit = transactions.map( transaction => ( { ...transaction, type: 'DEBIT', operationId: operation.id, createdAt, createdById } ) );
+      const transactionEntities = transactionsDto.reduce( ( acc, transaction ) => {
+        const base = {
+          ...transaction,
+          operationId: operation.id,
+          createdAt, createdById
+        };
+        return [ ...acc, { ...base, type: 'DEBIT' }, { ...base, type: 'CREDIT' } ];
+      }, [] );
 
-      await this.#transactionRepository.create( credit, tx );
-      await this.#transactionRepository.create( debit, tx );
+      const transactions = await this.#transactionRepository.create( transactionEntities, tx );
 
-      const fromValues = transactions.map( transaction => ( {
-        operationId: operation.id,
-        departmentId: body.fromDepartmentId,
-        medicationId: transaction.medicationId,
-        amount: -transaction.amount
-      } ) );
+      const balanceEntities = transactions.reduce( ( acc, transaction ) => {
+        const base = {
+          operationId: transaction.operationId,
+          departmentId: transaction.type === 'DEBIT' ? operation.fromDepartmentId : operation.toDepartmentId,
+          medicationId: transaction.medicationId,
+          amount: transaction.type === 'DEBIT' ? -transaction.amount : transaction.amount
+        };
+        return transaction.type === 'DEBIT' ? [ ...acc, base ] : body.toDepartmentId ? [ ...acc, base ] : acc;
+      }, [] );
 
-      const toValues = transactions.map( transaction => ( {
-        operationId: operation.id,
-        departmentId: body.toDepartmentId,
-        medicationId: transaction.medicationId,
-        amount: transaction.amount
-      } ) );
+      await this.#balanceRepository.create( balanceEntities, tx );
 
-      await this.#balanceRepository.create( fromValues, tx );
-      body.toDepartmentId ? await this.#balanceRepository.create( toValues, tx ) : null;
       return operation;
     } );
   };
@@ -63,7 +64,24 @@ export class OperationService {
   };
 
   async updateOperationById( id, body ) {
-    return await this.#operationRepository.update( { id }, body );
+    return await this.#prisma.$transaction( async tx => {
+      const operation = await this.#operationRepository.update( { id }, body, tx );
+      const transactions = await this.#transactionRepository.find( { filters: { operationId: id } }, tx );
+
+      const balanceEntities = transactions.reduce( ( acc, transaction ) => {
+        const base = {
+          operationId: transaction.operationId,
+          departmentId: transaction.type === 'DEBIT' ? operation.fromDepartmentId : operation.toDepartmentId,
+          medicationId: transaction.medicationId,
+          amount: body.status === 'COMPLETED' ? transaction.type === 'DEBIT' ? -transaction.amount : transaction.amount : transaction.type === 'DEBIT' ? transaction.amount : -transaction.amount
+        };
+        return transaction.type === 'DEBIT' ? [ ...acc, base ] : operation.toDepartmentId ? [ ...acc, base ] : acc;
+      }, [] );
+
+      await this.#balanceRepository.create( balanceEntities, tx );
+
+      return operation;
+    } );
   };
 
-};
+}

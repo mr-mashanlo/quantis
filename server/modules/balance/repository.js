@@ -32,7 +32,10 @@ export class BalanceRepository {
       where: filters,
       orderBy: sort,
       take: pagination.limit,
-      skip: pagination.skip
+      skip: pagination.skip,
+      include: {
+        medication: true
+      }
     } );
   };
 
