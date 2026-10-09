@@ -1,5 +1,6 @@
 import { type RouteObject } from 'react-router';
 
+import { balancesRouter } from '@/pages/admin/balances';
 import { departmentsRouter } from '@/pages/admin/departments';
 import { employeesRouter } from '@/pages/admin/employees';
 import { medicationsRouter } from '@/pages/admin/medications';
@@ -20,7 +21,8 @@ export const adminRouter: RouteObject = {
         patientsRouter,
         operationsRouter,
         createOperationRouter,
-        transactionsRouter
+        transactionsRouter,
+        balancesRouter
       ]
     }
   ]
