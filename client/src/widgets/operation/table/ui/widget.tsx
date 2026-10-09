@@ -43,7 +43,7 @@ export const OperationTable: FC<Props> = ( props ) => {
 
   if ( operations.isPending ) return <TableSkeleton />;
 
-  if ( operations.error ) return <TableSkeleton />;
+  if ( operations.isError ) return <TableSkeleton />;
 
   return (
     <Table<ExtendedOperation>

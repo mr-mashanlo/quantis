@@ -53,7 +53,7 @@ export const PatientTable: FC<Props> = ( props ) => {
 
   if ( patients.isPending ) return <TableSkeleton />;
 
-  if ( patients.error ) return <TableSkeleton />;
+  if ( patients.isError ) return <TableSkeleton />;
 
   return (
     <Table<ExtendedPatient>

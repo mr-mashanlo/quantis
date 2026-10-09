@@ -1,6 +1,6 @@
 import { Plus } from 'lucide-react';
 import { type DetailedHTMLProps, type FC, type HTMLAttributes, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 
 import { type Department, useDepartments } from '@/entities/department';
 import { ArchiveDepartmentForm, CreateDepartmentForm, UpdateDepartmentForm } from '@/features/department';
@@ -53,12 +53,12 @@ export const DepartmentTable: FC<Props> = ( props ) => {
 
   if ( departments.isPending ) return <TableSkeleton />;
 
-  if ( departments.error ) return <TableSkeleton />;
+  if ( departments.isError ) return <TableSkeleton />;
 
   return (
     <Table<ExtendedDepartment>
       data={departments.data}
-      columns={[ { key: 'action', value: 'Action', cell: row => <RowMenu row={row} /> }, { key: 'name', value: 'Name' }, { key: 'archived', value: 'Archived' } ]}
+      columns={[ { key: 'action', value: 'Action', cell: row => <RowMenu row={row} /> }, { key: 'name', value: 'Name', cell: row => <Link to={`/departments/${row.id}`} className="hover:underline">{row.name}</Link> }, { key: 'archived', value: 'Archived' } ]}
       header={<Header leftAction={<HeaderModal />} rightAction={<SearchForm />}>Departments</Header>}
       footer={<Pagination limit={departments.data.limit} page={departments.data.page} total={departments.data.total} />}
       {...props}

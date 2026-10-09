@@ -4,7 +4,7 @@ import { type PaginatedResponse } from '@/shared/types';
 
 const OperationSchema = z.object( {
   id: z.string(),
-  status: z.enum( [ 'DRAFT', 'COMPLETED', 'CANCELLED' ], 'Status has invalid value' ),
+  status: z.enum( [ 'COMPLETED', 'CANCELLED' ], 'Status has invalid value' ),
   fromDepartment: z.object( {
     id: z.string(),
     name: z.string()
@@ -40,7 +40,7 @@ export const CreateOperationFormSchema = z.object( {
 
 export const CreateOperationSchema = OperationSchema.omit( { id: true, fromDepartment: true, toDepartment: true, toPatient: true, createdAt: true, createdById: true } );
 
-export const UpdateOperationSchema = OperationSchema.omit( { id: true, fromDepartment: true, toDepartment: true, toPatient: true, createdAt: true, createdById: true } );
+export const UpdateOperationSchema = OperationSchema.pick( { status: true } );
 
 export type Operation = z.infer<typeof OperationSchema>;
 

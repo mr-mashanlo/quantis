@@ -53,7 +53,7 @@ export const EmployeeTable: FC<Props> = ( props ) => {
 
   if ( employees.isPending ) return <TableSkeleton />;
 
-  if ( employees.error ) return <TableSkeleton />;
+  if ( employees.isError ) return <TableSkeleton />;
 
   return (
     <Table<ExtendedEmployee>
