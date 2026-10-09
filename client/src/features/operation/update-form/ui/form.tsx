@@ -31,7 +31,7 @@ export const UpdateOperationForm: FC<Props> = ( { operation, className, ...props
       <h3 className="mb-5 text-xl text-center font-bold">Update operation</h3>
       <div className="grid gap-4 sm:gap-5">
         <form.Field name="status" validators={{ onChange: UpdateOperationSchema.shape.status }}>
-          {field => <Listbox icon="info" value={field.state.value} onChange={e => field.handleChange( e as Operation['status'] )} placeholder={field.state.value} options={[ { key: 'DRAFT', value: 'DRAFT' }, { key: 'COMPLETED', value: 'COMPLETED' }, { key: 'CANCELLED', value: 'CANCELLED' } ]} />}
+          {field => <Listbox icon="info" value={field.state.value} onChange={e => field.handleChange( e as Operation['status'] )} placeholder={field.state.value} options={[ { key: 'COMPLETED', value: 'COMPLETED' }, { key: 'CANCELLED', value: 'CANCELLED' } ]} />}
         </form.Field>
         <form.Subscribe selector={state => [ state.canSubmit, state.isSubmitting ]}>
           {( [ canSubmit, isSubmitting ] ) => <Button type="submit" disabled={!canSubmit}>{isSubmitting ? '•••' : 'Save'}</Button>}
