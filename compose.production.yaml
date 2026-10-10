@@ -2,7 +2,7 @@ services:
 
   db:
     image: postgres:15
-    container_name: postgres_production
+    container_name: postgres
     ports:
       - "127.0.0.1:5432:5432"
     networks:
@@ -42,7 +42,7 @@ services:
     networks:
       - prisma-network
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - server
     restart: always

@@ -30,7 +30,7 @@ const speedLimiter = slowDown( {
   delayMs: hits => ( hits - 50 ) * 500
 } );
 
-app.use( cors( { credentials: true, origin: process.env.FRONT_URL } ) );
+app.use( cors( { credentials: true, origin: [ process.env.DEV_FRONT_URL, process.env.PROD_FRONT_URL ] } ) );
 app.use( cookieParser() );
 app.use( express.json() );
 
