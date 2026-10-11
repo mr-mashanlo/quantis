@@ -17,7 +17,7 @@ const HeaderModal = () => {
 
   return (
     <>
-      <SquareButton onClick={() => setIsCreateModalOpen( true )}>
+      <SquareButton theme="light" onClick={() => setIsCreateModalOpen( true )}>
         <Plus className="w-2.5 h-2.5 stroke-3" />
       </SquareButton>
       <Dialog open={isCreateModalOpen} onClose={() => setIsCreateModalOpen( false )}>
@@ -34,8 +34,8 @@ const RowMenu = ( { row }: { row: Patient } ) => {
   return (
     <>
       <Menu buttons={[
-        <Button scale="sm" theme="sm" onClick={() => setIsEditModalOpen( true )}>Edit</Button>,
-        <Button scale="sm" theme="sm" onClick={() => setIsArchiveModalOpen( true )}>{row.archived ? 'Unarchive' : 'Archive'}</Button>
+        <Button scale="small" theme="transparent" className="text-left" onClick={() => setIsEditModalOpen( true )}>Edit</Button>,
+        <Button scale="small" theme="transparent" className="text-left" onClick={() => setIsArchiveModalOpen( true )}>{row.archived ? 'Unarchive' : 'Archive'}</Button>
       ]} />
       <Dialog open={isEditModalOpen} onClose={() => setIsEditModalOpen( false )}>
         <UpdatePatientForm patient={row} />
@@ -47,7 +47,7 @@ const RowMenu = ( { row }: { row: Patient } ) => {
   );
 };
 
-export const PatientTable: FC<Props> = ( props ) => {
+export const PatientTable: FC<Props> = props => {
   const [ searchParams ] = useSearchParams();
   const { patients } = usePatients( Object.fromEntries( searchParams.entries() ) );
 

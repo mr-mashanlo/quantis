@@ -28,7 +28,7 @@ const RowMenu = ( { row }: { row: Operation } ) => {
   return (
     <>
       <Menu buttons={[
-        <Button scale="sm" theme="sm" onClick={() => setIsEditModalOpen( true )}>Edit</Button>
+        <Button scale="small" theme="transparent" className="text-left" onClick={() => setIsEditModalOpen( true )}>Edit</Button>
       ]} />
       <Dialog open={isEditModalOpen} onClose={() => setIsEditModalOpen( false )}>
         <UpdateOperationForm operation={row} />
@@ -37,7 +37,7 @@ const RowMenu = ( { row }: { row: Operation } ) => {
   );
 };
 
-export const OperationTable: FC<Props> = ( props ) => {
+export const OperationTable: FC<Props> = props => {
   const [ searchParams ] = useSearchParams();
   const { operations } = useOperations( Object.fromEntries( searchParams.entries() ) );
 

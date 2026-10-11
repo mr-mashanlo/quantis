@@ -41,32 +41,32 @@ export const CreateOperationForm: FC<Props> = ( { ...props } ) => {
 
   const SubmitButton =
     <form.Subscribe>
-      {state => <Button scale="sm" type="submit" disabled={!state.canSubmit}>{state.isSubmitting ? '•••' : 'Save'}</Button>}
+      {state => <Button scale="small" type="submit" disabled={!state.canSubmit}>{state.isSubmitting ? '•••' : 'Save'}</Button>}
     </form.Subscribe>;
 
   const AddButton =
-    <SquareButton type="button" onClick={() => form.pushFieldValue( 'transactions', { medication: { id: '' }, amount: '' } )}>
+    <SquareButton theme="light" type="button" onClick={() => form.pushFieldValue( 'transactions', { medication: { id: '' }, amount: '' } )}>
       <Plus className="w-2.5 h-2.5 stroke-3" />
     </SquareButton>;
 
   const FromDepartmentInput =
     <div className="w-60 mx-4">
       <form.Field name="fromDepartment" validators={{ onChange: CreateOperationFormSchema.shape.fromDepartment }}>
-        {field => <Combobox<{ id: string }, false> scale="sm" icon="hospital" options={mapedDepartments || []} value={field.state.value} onChange={e => field.handleChange( e || { id: '' } )} onClose={() => setDepartmentQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Department" displayValue={data => data?.value} onChange={e => setDepartmentQuery( e.target.value )} />} />}
+        {field => <Combobox<{ id: string }, false> scale="small" icon="hospital" options={mapedDepartments || []} value={field.state.value} onChange={e => field.handleChange( e || { id: '' } )} onClose={() => setDepartmentQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="small" placeholder="Department" displayValue={data => data?.value} onChange={e => setDepartmentQuery( e.target.value )} />} />}
       </form.Field>
     </div>;
 
   const ToDepartmentInput =
     <div className="w-60 mx-4">
       <form.Field name="toDepartment" validators={{ onChange: CreateOperationFormSchema.shape.toDepartment }}>
-        {field => <Combobox<{ id: string }, false> scale="sm" icon="hospital" options={mapedDepartments || []} value={field.state.value} onChange={e => {field.handleChange( e || { id: '' } ); form.setFieldValue( 'toPatient', { id: '' } );}} onClose={() => setDepartmentQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Department" displayValue={data => data?.value} onChange={e => setDepartmentQuery( e.target.value )} />} />}
+        {field => <Combobox<{ id: string }, false> scale="small" icon="hospital" options={mapedDepartments || []} value={field.state.value} onChange={e => {field.handleChange( e || { id: '' } ); form.setFieldValue( 'toPatient', { id: '' } );}} onClose={() => setDepartmentQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="small" placeholder="Department" displayValue={data => data?.value} onChange={e => setDepartmentQuery( e.target.value )} />} />}
       </form.Field>
     </div>;
 
   const ToPatientInput =
     <div className="w-60 mx-4">
       <form.Field name="toPatient" validators={{ onChange: CreateOperationFormSchema.shape.toPatient }}>
-        {field => <Combobox<{ id: string }, false> scale="sm" icon="cat" options={mapedPatients || []} value={field.state.value} onChange={e => {field.handleChange( e || { id: '' } ); form.setFieldValue( 'toDepartment', { id: '' } );}} onClose={() => setPatientQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Patient" displayValue={data => data?.value} onChange={e => setPatientQuery( e.target.value )} />} />}
+        {field => <Combobox<{ id: string }, false> scale="small" icon="cat" options={mapedPatients || []} value={field.state.value} onChange={e => {field.handleChange( e || { id: '' } ); form.setFieldValue( 'toDepartment', { id: '' } );}} onClose={() => setPatientQuery( '' )} invalid={field.state.meta.isValid} input={<ComboboxInput scale="small" placeholder="Patient" displayValue={data => data?.value} onChange={e => setPatientQuery( e.target.value )} />} />}
       </form.Field>
     </div>;
 
@@ -95,18 +95,18 @@ export const CreateOperationForm: FC<Props> = ( { ...props } ) => {
                   {transactionField.state.value.map( ( _, index ) => (
                     <tr key={index} className="h-13.5 border-t border-zinc-200 dark:border-zinc-800/50">
                       <td className="w-13.5 p-3">
-                        <SquareButton type="button" onClick={() => transactionField.removeValue( index )}>
+                        <SquareButton theme="light" type="button" onClick={() => transactionField.removeValue( index )}>
                           <Trash className="w-2.5 h-2.5 stroke-3" />
                         </SquareButton>
                       </td>
                       <td className="p-3">
                         <form.Field name={`transactions[${index}].medication`}>
-                          {medicationField => <Combobox<{ id: string }, false> scale="sm" icon="pill" options={mapedMedications || []} value={medicationField.state.value} onChange={e => medicationField.handleChange( e || { id: '' } )} onClose={() => setMedicationQuery( '' )} invalid={medicationField.state.meta.isValid} input={<ComboboxInput scale="sm" placeholder="Medication" displayValue={data => data?.value} onChange={e => setMedicationQuery( e.target.value )} />} />}
+                          {medicationField => <Combobox<{ id: string }, false> scale="small" icon="pill" options={mapedMedications || []} value={medicationField.state.value} onChange={e => medicationField.handleChange( e || { id: '' } )} onClose={() => setMedicationQuery( '' )} invalid={medicationField.state.meta.isValid} input={<ComboboxInput scale="small" placeholder="Medication" displayValue={data => data?.value} onChange={e => setMedicationQuery( e.target.value )} />} />}
                         </form.Field>
                       </td>
                       <td className="p-3">
                         <form.Field name={`transactions[${index}].amount`}>
-                          {amountField => <TextInput scale="sm" icon="package-2" type="number" min="0" placeholder="Amount" value={amountField.state.value} onChange={e => amountField.handleChange( e.target.value )} onWheel={e => e.currentTarget.blur()} invalid={amountField.state.meta.isValid} data-error={amountField.state.meta.isValid ? false : true} />}
+                          {amountField => <TextInput scale="small" icon="package-2" type="number" min="0" placeholder="Amount" value={amountField.state.value} onChange={e => amountField.handleChange( e.target.value )} onWheel={e => e.currentTarget.blur()} invalid={amountField.state.meta.isValid} data-error={amountField.state.meta.isValid ? false : true} />}
                         </form.Field>
                       </td>
                     </tr>
