@@ -6,7 +6,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 
-import { queryClient } from '@/shared/libs';
+import { queryClient } from '@/shared/lib';
 
 import { router } from './routes/router';
 

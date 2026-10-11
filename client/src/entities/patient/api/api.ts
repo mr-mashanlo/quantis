@@ -1,4 +1,4 @@
-import { kyInstance } from '@/shared/libs';
+import { kyInstance } from '@/shared/lib';
 
 import { type CreatePatientDTO, type PaginatedPatient, type Patient, type UpdatePatientDTO } from '../model/schema';
 

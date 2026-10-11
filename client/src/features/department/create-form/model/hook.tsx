@@ -3,7 +3,7 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
 import { type CreateDepartmentDTO, useCreateDepartment } from '@/entities/department';
-import { mapServerErrors } from '@/shared/libs';
+import { mapServerErrors } from '@/shared/lib';
 
 export const useCreateDepartmentForm = () => {
   const close = useClose();

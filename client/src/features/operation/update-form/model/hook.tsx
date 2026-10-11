@@ -3,7 +3,7 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
 import { type Operation, type UpdateOperationDTO, useUpdateOperation } from '@/entities/operation';
-import { mapServerErrors } from '@/shared/libs';
+import { mapServerErrors } from '@/shared/lib';
 
 export const useUpdateOperationForm = ( operation: Operation ) => {
   const close = useClose();

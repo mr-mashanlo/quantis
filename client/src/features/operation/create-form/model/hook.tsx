@@ -3,7 +3,7 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
 import { type CreateOperationFormDTO, useCreateOperation } from '@/entities/operation';
-import { mapServerErrors } from '@/shared/libs';
+import { mapServerErrors } from '@/shared/lib';
 
 export const useCreateOperationForm = ( { onSuccess, onError }: { onSuccess?: () => void, onError?: () => void } ) => {
   const close = useClose();

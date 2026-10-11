@@ -1,6 +1,6 @@
 import { type KyResponse } from 'ky';
 
-import { kyInstance } from '@/shared/libs';
+import { kyInstance } from '@/shared/lib';
 
 import { type Auth, type SignInDTO, type SignUpDTO } from '../model/schema';
 

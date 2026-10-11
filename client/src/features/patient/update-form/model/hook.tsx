@@ -3,7 +3,7 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
 import { type Patient, type UpdatePatientDTO, useUpdatePatient } from '@/entities/patient';
-import { mapServerErrors } from '@/shared/libs';
+import { mapServerErrors } from '@/shared/lib';
 
 export const useUpdatePatientForm = ( patient: Patient ) => {
   const close = useClose();

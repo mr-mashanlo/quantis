@@ -2,7 +2,7 @@ import { useForm } from '@tanstack/react-form';
 import { HTTPError } from 'ky';
 
 import { useAuth } from '@/entities/auth';
-import { mapServerErrors } from '@/shared/libs';
+import { mapServerErrors } from '@/shared/lib';
 
 export const useSignUpForm = ( { onSuccess, onError }: { onSuccess?: () => void, onError?: () => void } ) => {
 

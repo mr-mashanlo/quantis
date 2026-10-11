@@ -1,4 +1,4 @@
-import { kyInstance } from '@/shared/libs';
+import { kyInstance } from '@/shared/lib';
 
 import { type CreateDepartmentDTO, type Department, type PaginatedDepartment, type UpdateDepartmentDTO } from '../model/schema';
 

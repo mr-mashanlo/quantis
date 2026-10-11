@@ -1,4 +1,4 @@
-import { kyInstance } from '@/shared/libs';
+import { kyInstance } from '@/shared/lib';
 
 import { type CreateOperationDTO, type Operation, type PaginatedOperation, type UpdateOperationDTO } from '../model/schema';
 
