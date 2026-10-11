@@ -1,1 +1,1 @@
-export * from './ui/widget';
+export { OperationTable } from './ui/widget';

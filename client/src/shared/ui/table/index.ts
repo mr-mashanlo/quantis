@@ -1,5 +1,5 @@
-export * from './header';
-export * from './pagination';
-export * from './search-form';
-export * from './table';
-export * from './table-skeleton';
+export { Header } from './header';
+export { Pagination } from './pagination';
+export { SearchForm } from './search-form';
+export { Table } from './table';
+export { TableSkeleton } from './table-skeleton';

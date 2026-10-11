@@ -1,1 +1,1 @@
-export * from './model/router';
+export { signUpRouter } from './model/router';

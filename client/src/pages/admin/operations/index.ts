@@ -1,1 +1,1 @@
-export * from './model/router';
+export { createOperationRouter, operationsRouter } from './model/router';

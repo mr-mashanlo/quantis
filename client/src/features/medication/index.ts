@@ -1,3 +1,3 @@
-export * from './archive-form/ui/form';
-export * from './create-form/ui/form';
-export * from './update-form/ui/form';
+export { ArchiveMedicationForm } from './archive-form/ui/form';
+export { CreateMedicationForm } from './create-form/ui/form';
+export { UpdateMedicationForm } from './update-form/ui/form';

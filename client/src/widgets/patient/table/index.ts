@@ -1,1 +1,1 @@
-export * from './ui/widget';
+export { PatientTable } from './ui/widget';

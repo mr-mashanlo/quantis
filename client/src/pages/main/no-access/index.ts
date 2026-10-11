@@ -1,1 +1,1 @@
-export * from './model/router';
+export { noAccessRouter } from './model/router';

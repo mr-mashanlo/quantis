@@ -1,1 +1,1 @@
-export * from './model/router';
+export { balancesRouter } from './model/router';

@@ -1,2 +1,2 @@
-export * from './create-form/ui/form';
-export * from './update-form/ui/form';
+export { CreateOperationForm } from './create-form/ui/form';
+export { UpdateOperationForm } from './update-form/ui/form';

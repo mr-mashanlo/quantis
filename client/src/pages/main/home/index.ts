@@ -1,1 +1,1 @@
-export * from './model/router';
+export { homeRouter } from './model/router';

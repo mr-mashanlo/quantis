@@ -1,1 +1,1 @@
-export * from './ui/widget';
+export { TransactionTable } from './ui/widget';

@@ -1,1 +1,1 @@
-export * from './model/router';
+export { departmentsRouter } from './model/router';

@@ -1,1 +1,1 @@
-export * from './paginated-response';
+export { type PaginatedResponse } from './paginated-response';

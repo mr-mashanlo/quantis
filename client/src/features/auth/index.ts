@@ -1,2 +1,2 @@
-export * from './sign-in-form/ui/form';
-export * from './sign-up-form/ui/form';
+export { SignInForm } from './sign-in-form/ui/form';
+export { SignUpForm } from './sign-up-form/ui/form';

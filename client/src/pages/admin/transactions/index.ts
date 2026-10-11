@@ -1,1 +1,1 @@
-export * from './model/router';
+export { transactionsRouter } from './model/router';

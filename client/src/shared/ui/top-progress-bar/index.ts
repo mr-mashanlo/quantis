@@ -1,1 +1,1 @@
-export * from './top-progress-bar';
+export { TopProgressBar } from './top-progress-bar';

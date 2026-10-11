@@ -1,3 +1,3 @@
-export * from './ky';
-export * from './map-server-errors';
-export * from './query-client';
+export { kyInstance, kyMediaInstance, UnauthorizedError } from './ky';
+export { mapServerErrors } from './map-server-errors';
+export { queryClient } from './query-client';

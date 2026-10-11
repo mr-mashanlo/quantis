@@ -1,1 +1,1 @@
-export * from './model/router';
+export { employeesRouter } from './model/router';

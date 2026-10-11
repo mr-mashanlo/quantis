@@ -1,3 +1,3 @@
-export * from './archive-form/ui/form';
-export * from './create-form/ui/form';
-export * from './update-form/ui/form';
+export { ArchiveDepartmentForm } from './archive-form/ui/form';
+export { CreateDepartmentForm } from './create-form/ui/form';
+export { UpdateDepartmentForm } from './update-form/ui/form';

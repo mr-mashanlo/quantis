@@ -1,2 +1,2 @@
-export * from './admin';
-export * from './clear';
+export { AdminLayout } from './admin';
+export { ClearLayout } from './clear';

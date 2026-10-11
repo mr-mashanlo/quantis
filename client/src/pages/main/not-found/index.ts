@@ -1,1 +1,1 @@
-export * from './model/router';
+export { notFoundRouter } from './model/router';

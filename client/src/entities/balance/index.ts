@@ -1,3 +1,3 @@
-export * from './api/api';
-export * from './model/schema';
-export * from './model/use-balances';
+export { balanceService } from './api/api';
+export { type Balance, BalanceSchema, type PaginatedBalance } from './model/schema';
+export { useBalances } from './model/use-balances';

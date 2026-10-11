@@ -1,1 +1,1 @@
-export * from './model/router';
+export { medicationsRouter } from './model/router';
