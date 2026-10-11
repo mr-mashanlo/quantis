@@ -8,7 +8,7 @@ import { Header, Pagination, Table, TableSkeleton } from '@/shared/ui/table';
 type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 interface ExtendedTransaction extends Transaction { action?: string };
 
-export const TransactionTable: FC<Props> = ( props ) => {
+export const TransactionTable: FC<Props> = props => {
   const { id } = useParams();
   const [ searchParams ] = useSearchParams();
   const { operation } = useOperation( id || '' );

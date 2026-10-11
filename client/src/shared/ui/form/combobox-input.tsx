@@ -4,7 +4,7 @@ import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface Props extends ComboboxInputProps<'input', { value: string }> {
-  scale?: 'sm' | 'base'
+  scale?: 'small' | 'base'
 }
 
 export const ComboboxInput: FC<Props> = ( { scale = 'base', ...props } ) => {

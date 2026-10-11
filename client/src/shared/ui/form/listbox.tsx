@@ -8,7 +8,7 @@ interface Props extends ListboxProps {
   icon: IconName,
   placeholder: string,
   options: Array<{key: string, value: string}>,
-  scale?: 'sm' | 'base'
+  scale?: 'small' | 'base'
 }
 
 export const Listbox: FC<Props> = ( { icon, placeholder, options, scale = 'base', ...props } ) => {

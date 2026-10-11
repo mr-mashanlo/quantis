@@ -8,7 +8,7 @@ import { Header, Pagination, Table, TableSkeleton } from '@/shared/ui/table';
 type Props = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 interface ExtendedBalance extends Balance { action?: string };
 
-export const BalanceTable: FC<Props> = ( props ) => {
+export const BalanceTable: FC<Props> = props => {
   const { id } = useParams();
   const { department } = useDepartment( id || '' );
   const [ searchParams ] = useSearchParams();

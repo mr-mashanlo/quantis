@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 interface Props extends InputProps {
   icon: IconName,
-  scale?: 'sm' | 'base'
+  scale?: 'small' | 'base'
 }
 
 export const TextInput: FC<Props> = ( { icon, scale = 'base', invalid = true, ...props } ) => {

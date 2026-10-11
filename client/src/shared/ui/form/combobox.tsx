@@ -8,7 +8,7 @@ interface Props<T, M extends boolean> extends ComboboxProps<T, M> {
   icon: IconName,
   input: ReactNode,
   options: Array<{id: string, key: string, value: string}>,
-  scale?: 'sm' | 'base'
+  scale?: 'small' | 'base'
 }
 
 export const Combobox = <T, M extends boolean>( { icon, input, options, scale = 'base', invalid = true, ...props }: Props<T, M> ) => {

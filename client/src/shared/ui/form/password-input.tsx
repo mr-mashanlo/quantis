@@ -4,7 +4,7 @@ import { type FC, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface Props extends InputProps {
-  scale?: 'sm' | 'base'
+  scale?: 'small' | 'base'
 };
 
 export const PasswordInput: FC<Props> = ( { scale = 'base', className, invalid = true, ...props } ) => {

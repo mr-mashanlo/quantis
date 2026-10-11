@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
@@ -20,7 +21,8 @@ export default defineConfig( [
       globals: globals.browser
     },
     plugins: {
-      '@simple-sort': simpleImportSort
+      '@simple-sort': simpleImportSort,
+      '@stylistic': stylistic
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
@@ -37,7 +39,9 @@ export default defineConfig( [
       'linebreak-style': [ 'error', 'unix' ],
       'jsx-quotes': [ 'error', 'prefer-double' ],
       '@simple-sort/exports': 'error',
-      '@simple-sort/imports': 'error'
+      '@simple-sort/imports': 'error',
+      '@stylistic/arrow-parens': [ 'error', 'as-needed' ],
+      '@stylistic/eol-last': [ 'error', 'always' ]
     }
   }
 ] );
